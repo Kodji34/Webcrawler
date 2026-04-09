@@ -55,6 +55,13 @@ class ScientificPersistenceStore:
             payload["imports"].extend(record.model_dump(mode="json") for record in records)
             self._save(payload)
 
+    def list_imports(self) -> list[ScientificImportedRecord]:
+        payload = self._load()
+        return [
+            ScientificImportedRecord.model_validate(record)
+            for record in payload.get("imports", [])
+        ]
+
 
 class ScientificSearchService:
     def __init__(self, store: ScientificPersistenceStore | None = None) -> None:
@@ -123,3 +130,6 @@ class ScientificSearchService:
             imported_count=len(records),
             records=records,
         )
+
+    def list_imported_records(self) -> list[ScientificImportedRecord]:
+        return self.store.list_imports()

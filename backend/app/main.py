@@ -9,9 +9,9 @@ def create_app() -> FastAPI:
     settings = get_settings()
     app = FastAPI(
         title=settings.app_name,
-        version="0.2.0",
+        version="0.3.0",
         debug=settings.app_debug,
-        summary="Phase 2 scientific connectors for PyCrawler Research Studio.",
+        summary="Phase 3 PDF ingestion and OCR pipeline for PyCrawler Research Studio.",
     )
     app.add_middleware(
         CORSMiddleware,

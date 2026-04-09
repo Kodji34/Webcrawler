@@ -1,113 +1,164 @@
 # PyCrawler Research Studio
 
-Phase 2 adds real scientific connectors on top of the Phase 1 foundation.
+Phase 3 adds a usable PDF ingestion and OCR layer on top of the Phase 1 foundation and the Phase 2 scientific connectors.
 
-## Phase 2 scope
+## Phase 3 scope
 
-- official scientific source search through Crossref, OpenAlex, PubMed, and HAL
-- normalized metadata retrieval through a connector-based backend architecture
-- FR/EN scientific search UI with filters, preview, multi-selection, and local import
-- local single-user persistence for launched queries and imported records
+- keep the Phase 1 foundation and Phase 2 scientific search flow intact
+- import PDFs from local folders, direct PDF URLs, and linked scientific imports when a direct PDF URL exists
+- detect usable native text with PyMuPDF and pdfplumber
+- fall back to OCR when requested or when auto mode recommends it
+- preview extracted text before saving
+- apply explicit PDF-only cleaning options chosen by the user
+- store processed PDF metadata and text locally for single-user use
 
 ## Explicitly out of scope
 
-- PDF or OCR extraction
 - social media connectors
-- advanced corpus cleaning
+- advanced global corpus cleaning outside PDF scope
+- TreeTagger lemmatization
 - advanced IRaMuTeQ exports
-- phases 3 to 6
+- Phase 4 to Phase 6 work
 
-## Supported sources
+## Supported scientific and PDF flows
+
+Scientific sources remain:
 
 - Crossref REST API
 - OpenAlex API
 - PubMed E-utilities
 - HAL search API
 
-## Normalized result model
+Phase 3 PDF sources are:
 
-Each scientific result exposes:
+- local directory scan
+- direct remote PDF URLs
+- direct PDF links attached to already imported scientific results
 
-- `source`
-- `title`
-- `authors`
-- `publication_date`
-- `url`
-- `language`
-- `document_type`
-- `doi`
-- `pmid` when available
-- `abstract` when available
-- `journal` or venue when available
-- `keyword_used`
+## PDF modes
 
-## Search parameters
+Extraction modes:
 
-The backend and UI support:
+- `native`: use embedded PDF text only
+- `ocr`: use OCR only
+- `auto`: try native extraction first and recommend or switch to OCR when the extracted text is too weak
 
-- keyword or simple query
-- selected source
-- max results
-- date range where the source supports it
-- language where the source supports it
-- DOI, PMID, or source-specific identifier where the source supports it
+The auto heuristic is intentionally simple:
+
+- native extraction runs first with PyMuPDF and pdfplumber
+- OCR is recommended when the document has no text or very little text
+- in auto mode, OCR is used only when OCR dependencies are available
+- the response always exposes the requested mode and the actual mode used
+
+## PDF cleaning options
+
+Cleaning is never applied unless the user asks for a cleaned output.
+
+Available options:
+
+- remove repeated headers
+- remove repeated footers
+- remove standalone page numbers
+- trim bibliography or references after a detected heading
+- normalize whitespace and line breaks
+
+Cleaning heuristics are approximate by design and are documented as such in API responses and UI notes.
 
 ## API endpoints
+
+Scientific search endpoints remain available:
 
 - `GET /api/v1/scientific/sources`
 - `POST /api/v1/scientific/search`
 - `POST /api/v1/scientific/import-selection`
+- `GET /api/v1/scientific/imports`
 
-Example search payload:
+Phase 3 PDF endpoints:
+
+- `POST /api/v1/pdf/import-local`
+- `POST /api/v1/pdf/import-urls`
+- `POST /api/v1/pdf/extract`
+- `POST /api/v1/pdf/preview`
+- `POST /api/v1/pdf/save-selection`
+- `GET /api/v1/pdf/jobs/{job_id}`
+- `GET /api/v1/pdf/items`
+
+Example local folder import:
 
 ```json
 {
-  "source": "crossref",
-  "query": "machine learning",
-  "start_date": "2022-01-01",
-  "end_date": "2024-12-31",
-  "max_results": 10
+  "directory_path": "C:/data/pdfs",
+  "recursive": true,
+  "language": "en"
 }
 ```
 
-Example import payload:
+Example direct URL import:
 
 ```json
 {
-  "project_name": "Local Research Project",
-  "results": [
+  "entries": [
     {
-      "source": "pubmed",
-      "title": "Example title",
-      "authors": ["Ada Lovelace"],
-      "publication_date": "2024-01-01",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/123456/",
-      "language": "en",
-      "document_type": "article",
-      "doi": "10.1000/example",
-      "pmid": "123456",
-      "abstract": "Short abstract",
-      "journal": "Example Journal",
-      "keyword_used": "machine learning"
+      "url": "https://example.org/paper.pdf",
+      "label": "paper.pdf"
     }
-  ]
+  ],
+  "import_type": "remote"
+}
+```
+
+Example extraction request:
+
+```json
+{
+  "item_ids": ["pdf-item-id"],
+  "extraction_mode": "auto",
+  "cleaning_options": {
+    "generate_cleaned_text": true,
+    "remove_headers": true,
+    "remove_page_numbers": true,
+    "normalize_whitespace": true
+  }
 }
 ```
 
 ## Local persistence
 
-Phase 2 keeps persistence intentionally simple in local single-user mode:
+Phase 3 keeps persistence intentionally simple in local single-user mode:
 
-- launched queries are stored in `backend/data/scientific_store.json`
-- imported records are stored in the same file
-- no project database, authentication, or advanced indexing is added yet
+- scientific queries and imports are stored in `backend/data/scientific_store.json`
+- PDF items, jobs, and saved PDF records are stored in `backend/data/pdf_store.json`
+- downloaded remote PDFs are cached under `backend/data/pdf_cache/`
+- no PostgreSQL domain models or multi-user access were added for this phase
+
+## Required system dependencies
+
+Python dependencies are installed from `pyproject.toml`, including:
+
+- `PyMuPDF`
+- `pdfplumber`
+- `httpx`
+- `pytesseract`
+- `Pillow`
+
+System tools:
+
+- Tesseract OCR must be installed and available on `PATH` for OCR mode
+- OCRmyPDF is optional and detected, but the current implementation uses `pytesseract` for OCR execution
+
+If Tesseract is missing:
+
+- the app still runs
+- native extraction still works
+- OCR mode reports a clear dependency-missing state
 
 ## Quick start
 
 1. Copy `.env.example` to `.env`.
 2. Optionally set `SCIENTIFIC_API_MAILTO` for APIs that recommend contact identification.
-3. Run `scripts\start-local.ps1` from PowerShell, or `scripts\start-local.bat` from Command Prompt.
-4. Open `http://127.0.0.1:5173` and use the `Scientific Search` screen.
+3. Ensure Tesseract is installed and available on `PATH` if you want OCR support.
+4. Run `scripts\start-local.ps1` from PowerShell, or `scripts\start-local.bat` from Command Prompt.
+5. Open `http://127.0.0.1:5173` and use both `Scientific Search` and `PDF Workspace`.
 
 ## Manual run
 
@@ -147,11 +198,12 @@ npm run build --prefix frontend
 
 ## Current limitations
 
-- HAL field coverage depends on the official search index fields returned by the API
-- PubMed metadata normalization stays intentionally lightweight and XML-based
-- imported records are stored locally in JSON rather than PostgreSQL models
-- no deduplication, saved search management, PDF retrieval, or full project workflow yet
+- OCR quality depends on the local Tesseract installation and the scanned PDF quality
+- the bibliography trimming heuristic is approximate and based on heading detection
+- repeated header and footer detection is frequency-based and may miss irregular layouts
+- remote PDF import accepts only direct PDF resources and does not do website scraping
+- PDF persistence is local JSON rather than full project database storage
 
-## Phase 3 preview
+## Phase 4 preview
 
-Phase 3 should add richer project-aware persistence, saved search management, stronger local indexing, and broader orchestration around the scientific connector layer. The PR draft for the current phase lives in `docs/phase-2-pr.md`.
+Phase 4 should build on the saved PDF corpus with richer project workflows and broader corpus tooling, without changing the scope of the current Phase 3 deliverable. The Phase 3 PR draft lives in `docs/phase-3-pr.md`.

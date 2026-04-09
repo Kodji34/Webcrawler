@@ -1,8 +1,8 @@
 {
   "app": {
     "title": "PyCrawler Research Studio",
-    "tagline": "Recherche scientifique locale.",
-    "phaseLabel": "Phase 2",
+    "tagline": "Recherche scientifique et PDF en local.",
+    "phaseLabel": "Phase 3",
     "localLabel": "Pile locale",
     "phaseBoundaryTitle": "Limite actuelle",
     "phaseBoundaryBody": "Connecteurs scientifiques, metadonnees normalisees et import local uniquement."
@@ -13,6 +13,7 @@
   "nav": {
     "dashboard": "Tableau de bord",
     "scientificSearch": "Recherche scientifique",
+    "pdfWorkspace": "Espace PDF",
     "researchQueue": "File de recherche",
     "collections": "Collections",
     "schedules": "Plannings",
@@ -21,6 +22,7 @@
   "headers": {
     "dashboard": "Etat des connecteurs, du stockage local et des integrations.",
     "scientificSearch": "Recherche via APIs officielles, apercu des metadonnees et import de selection.",
+    "pdfWorkspace": "Importer des PDF, choisir texte natif ou OCR, previsualiser et enregistrer la selection.",
     "researchQueue": "Espace reserve pour les demandes de crawl et la file de travaux.",
     "collections": "Espace reserve pour les sources, jeux de donnees et regroupements.",
     "schedules": "Espace reserve pour les recurrences et la planification locale.",
@@ -28,18 +30,19 @@
   },
   "dashboard": {
     "heroTitle": "Vue d'ensemble",
-    "heroSubtitle": "Connecteurs scientifiques officiels et import local prets.",
+    "heroSubtitle": "Connecteurs scientifiques et pipeline PDF/OCR prets.",
     "offline": "hors ligne",
-    "offlinePhaseName": "Phase 2 prete",
+    "offlinePhaseName": "Phase 3 prete",
     "backendUnavailable": "backend indisponible",
     "backendWarning": "Le point de sante FastAPI n'est pas encore joignable : {{details}}",
-    "phase1Chip": "Phase 2",
+    "phase1Chip": "Phase 3",
     "scopeTitle": "Perimetre actuel",
-    "scopeFallback": "Recherche normalisee et stockage local disponibles. Les traitements avances restent hors perimetre.",
+    "scopeFallback": "Recherche scientifique, extraction PDF, apercu OCR et stockage local sont disponibles. Les traitements avances restent hors perimetre.",
     "scopeChecklist": [
       "Crossref, OpenAlex, PubMed et HAL passent uniquement par leurs APIs officielles.",
-      "Les resultats sont normalises avant apercu et import.",
-      "Les requetes et imports sont stockes localement.",
+      "Les PDF peuvent venir d'un dossier local, d'URL directes ou de resultats scientifiques lies.",
+      "Le texte natif et l'OCR sont proposes selon la qualite du document.",
+      "Les requetes, imports et PDF traites sont stockes localement.",
       "Le FR et l'EN restent actifs dans toute l'interface."
     ],
     "stackTitle": "Pile active",
@@ -54,8 +57,8 @@
         "caption": "Routes FastAPI pour la recherche et l'import."
       },
       "worker": {
-        "title": "Sources scientifiques",
-        "caption": "Connecteurs officiels actifs dans cette version."
+        "title": "Pipeline PDF",
+        "caption": "Extraction native, OCR, apercu et enregistrement local."
       },
       "i18n": {
         "title": "Langues",
@@ -63,7 +66,7 @@
       },
       "phase": {
         "title": "Ligne de livraison",
-        "caption": "Pas de PDF/OCR, reseaux sociaux ni travaux Phase 3."
+        "caption": "Pas de reseaux sociaux, pas de TreeTagger, pas de Phase 4."
       }
     }
   },
@@ -111,6 +114,78 @@
       "sources": "Impossible de charger les sources scientifiques prises en charge.",
       "search": "La recherche scientifique a echoue.",
       "import": "L'import a echoue."
+    }
+  },
+  "pdf": {
+    "heroTitle": "Espace PDF",
+    "heroSubtitle": "Importer des PDF locaux ou distants, choisir texte natif ou OCR, previsualiser le texte et enregistrer la selection retenue.",
+    "defaultProject": "Projet local de recherche",
+    "dependencyMessage": "Le support OCR depend des outils systeme locaux. Les verifications Tesseract et OCRmyPDF sont affichees ci-dessous.",
+    "importLocalTitle": "Import dossier local",
+    "importUrlsTitle": "Import URL PDF directe",
+    "linkedTitle": "PDF lies aux imports scientifiques",
+    "processingTitle": "Options de traitement",
+    "resultsTitle": "Elements PDF",
+    "resultsSummary": "{{count}} elements, {{selected}} selectionnes",
+    "previewTitle": "Apercu du texte extrait",
+    "loading": "Chargement...",
+    "processing": "Traitement...",
+    "saving": "Enregistrement...",
+    "importLocal": "Scanner le dossier",
+    "importUrls": "Importer les URL",
+    "importLinked": "Importer les PDF lies",
+    "extract": "Extraire le texte",
+    "preview": "Previsualiser",
+    "save": "Enregistrer la selection",
+    "empty": "Importe des PDF pour afficher ici les elements detectes.",
+    "noPreview": "Selectionne ou previsualise un PDF pour inspecter le texte extrait.",
+    "noLinked": "Aucun import scientifique n'expose actuellement d'URL PDF directe.",
+    "ocrRecommended": "OCR recommande",
+    "fields": {
+      "localDirectory": "Dossier local",
+      "urlList": "Liste d'URL PDF",
+      "language": "Langue",
+      "projectName": "Nom du projet",
+      "mode": "Mode d'extraction"
+    },
+    "modes": {
+      "auto": "Detection auto",
+      "native": "Texte natif seulement",
+      "ocr": "OCR seulement"
+    },
+    "cleaning": {
+      "generate": "Generer un texte nettoye",
+      "headers": "Retirer les en-tetes repetes",
+      "footers": "Retirer les pieds de page repetes",
+      "pageNumbers": "Retirer les numeros de page",
+      "bibliography": "Couper bibliographie ou references",
+      "whitespace": "Normaliser les espaces"
+    },
+    "columns": {
+      "file": "Fichier",
+      "source": "Source",
+      "status": "Etat",
+      "pages": "Pages",
+      "mode": "Mode",
+      "actions": "Actions"
+    },
+    "dependencies": {
+      "ready": "OCR disponible",
+      "partial": "OCR limite"
+    },
+    "messages": {
+      "localImported": "{{count}} PDF local(aux) importe(s).",
+      "urlImported": "{{count}} PDF distant(s) importe(s).",
+      "extracted": "{{count}} PDF traite(s).",
+      "saved": "{{count}} PDF enregistre(s) dans le projet."
+    },
+    "errors": {
+      "load": "Impossible de charger l'espace PDF.",
+      "importLocal": "L'import local des PDF a echoue.",
+      "importUrls": "L'import des URL PDF a echoue.",
+      "preview": "La previsualisation PDF a echoue.",
+      "extract": "L'extraction PDF a echoue.",
+      "save": "L'enregistrement des PDF selectionnes a echoue."
     }
   },
   "pages": {

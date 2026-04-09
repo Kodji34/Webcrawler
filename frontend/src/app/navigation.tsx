@@ -1,6 +1,7 @@
 import DashboardCustomizeOutlinedIcon from '@mui/icons-material/DashboardCustomizeOutlined'
 import EventRepeatOutlinedIcon from '@mui/icons-material/EventRepeatOutlined'
 import LibraryBooksOutlinedIcon from '@mui/icons-material/LibraryBooksOutlined'
+import PictureAsPdfOutlinedIcon from '@mui/icons-material/PictureAsPdfOutlined'
 import ScienceOutlinedIcon from '@mui/icons-material/ScienceOutlined'
 import SettingsSuggestOutlinedIcon from '@mui/icons-material/SettingsSuggestOutlined'
 import TravelExploreOutlinedIcon from '@mui/icons-material/TravelExploreOutlined'
@@ -22,6 +23,11 @@ export const navigationItems: NavigationItem[] = [
     key: 'scientificSearch',
     path: '/scientific-search',
     icon: ScienceOutlinedIcon,
+  },
+  {
+    key: 'pdfWorkspace',
+    path: '/pdf-workspace',
+    icon: PictureAsPdfOutlinedIcon,
   },
   {
     key: 'researchQueue',

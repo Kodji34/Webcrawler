@@ -56,6 +56,11 @@ class CrossrefConnector(BaseScientificConnector):
             or item.get("published-online", {}).get("date-parts", [[]])[0]
             or item.get("created", {}).get("date-parts", [[]])[0]
         )
+        pdf_url = None
+        for link in item.get("link", []):
+            if (link.get("content-type") or "").lower() == "application/pdf":
+                pdf_url = link.get("URL")
+                break
         authors = [
             " ".join(part for part in [author.get("given"), author.get("family")] if part)
             for author in item.get("author", [])
@@ -72,5 +77,6 @@ class CrossrefConnector(BaseScientificConnector):
             pmid=None,
             abstract=self._normalize_text(item.get("abstract")),
             journal=(item.get("container-title") or [None])[0],
+            pdf_url=pdf_url,
             keyword_used=keyword,
         )

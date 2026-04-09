@@ -57,6 +57,7 @@ class ScientificSearchResult(BaseModel):
     pmid: str | None = None
     abstract: str | None = None
     journal: str | None = None
+    pdf_url: str | None = None
     keyword_used: str
 
 

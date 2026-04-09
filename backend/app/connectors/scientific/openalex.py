@@ -63,6 +63,7 @@ class OpenAlexConnector(BaseScientificConnector):
         ]
         primary_location = item.get("primary_location") or {}
         source = primary_location.get("source") or {}
+        best_oa_location = item.get("best_oa_location") or {}
         return ScientificSearchResult(
             source=ScientificSource.OPENALEX,
             title=item.get("display_name") or "Untitled",
@@ -75,6 +76,7 @@ class OpenAlexConnector(BaseScientificConnector):
             pmid=self._strip_pmid_prefix((item.get("ids") or {}).get("pmid")),
             abstract=self._abstract_from_inverted_index(item.get("abstract_inverted_index")),
             journal=source.get("display_name"),
+            pdf_url=best_oa_location.get("pdf_url"),
             keyword_used=keyword,
         )
 

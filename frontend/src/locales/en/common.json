@@ -1,8 +1,8 @@
 {
   "app": {
     "title": "PyCrawler Research Studio",
-    "tagline": "Local scientific research workspace.",
-    "phaseLabel": "Phase 2",
+    "tagline": "Local scientific and PDF research workspace.",
+    "phaseLabel": "Phase 3",
     "localLabel": "Local stack",
     "phaseBoundaryTitle": "Current boundary",
     "phaseBoundaryBody": "Scientific connectors, normalized metadata, and local import only."
@@ -13,6 +13,7 @@
   "nav": {
     "dashboard": "Dashboard",
     "scientificSearch": "Scientific Search",
+    "pdfWorkspace": "PDF Workspace",
     "researchQueue": "Research Queue",
     "collections": "Collections",
     "schedules": "Schedules",
@@ -21,6 +22,7 @@
   "headers": {
     "dashboard": "Connector status, local storage, and integration readiness.",
     "scientificSearch": "Official API search, metadata preview, and selection import.",
+    "pdfWorkspace": "Import PDFs, choose native text or OCR, preview the output, and save the selection.",
     "researchQueue": "Reserved area for crawl requests and research jobs.",
     "collections": "Reserved area for sources, datasets, and grouped workspaces.",
     "schedules": "Reserved area for recurrence and local planning.",
@@ -28,18 +30,19 @@
   },
   "dashboard": {
     "heroTitle": "Overview",
-    "heroSubtitle": "Official scientific connectors and local import are ready.",
+    "heroSubtitle": "Scientific connectors and the PDF/OCR pipeline are ready.",
     "offline": "offline",
-    "offlinePhaseName": "Phase 2 ready",
+    "offlinePhaseName": "Phase 3 ready",
     "backendUnavailable": "backend unavailable",
     "backendWarning": "The FastAPI health endpoint is not reachable yet: {{details}}",
-    "phase1Chip": "Phase 2",
+    "phase1Chip": "Phase 3",
     "scopeTitle": "Current scope",
-    "scopeFallback": "Normalized search and local storage are available. Advanced processing stays out of scope.",
+    "scopeFallback": "Scientific search, PDF extraction, OCR preview, and local storage are available. Advanced processing stays out of scope.",
     "scopeChecklist": [
       "Crossref, OpenAlex, PubMed, and HAL use official APIs only.",
-      "Results are normalized before preview and import.",
-      "Queries and imported records are stored locally.",
+      "PDFs can be imported from local folders, direct URLs, or linked scientific results.",
+      "Native extraction and OCR preview are both available depending on document quality.",
+      "Queries, imported records, and processed PDFs are stored locally.",
       "FR and EN stay available across the UI."
     ],
     "stackTitle": "Active stack",
@@ -54,8 +57,8 @@
         "caption": "FastAPI routes for search and import."
       },
       "worker": {
-        "title": "Scientific sources",
-        "caption": "Official connectors available in this release."
+        "title": "PDF pipeline",
+        "caption": "Native extraction, OCR fallback, preview, and local save."
       },
       "i18n": {
         "title": "Languages",
@@ -63,7 +66,7 @@
       },
       "phase": {
         "title": "Delivery line",
-        "caption": "No PDF/OCR, social, or Phase 3 work."
+        "caption": "No social connectors, no TreeTagger, and no Phase 4 work."
       }
     }
   },
@@ -111,6 +114,78 @@
       "sources": "Unable to load supported scientific sources.",
       "search": "Scientific search failed.",
       "import": "Import failed."
+    }
+  },
+  "pdf": {
+    "heroTitle": "PDF workspace",
+    "heroSubtitle": "Import local or remote PDFs, choose native extraction or OCR, preview the text, and save the approved selection.",
+    "defaultProject": "Local Research Project",
+    "dependencyMessage": "OCR support depends on local system tools. Tesseract and OCRmyPDF checks are shown below.",
+    "importLocalTitle": "Local folder import",
+    "importUrlsTitle": "Direct PDF URL import",
+    "linkedTitle": "Linked scientific PDFs",
+    "processingTitle": "Processing options",
+    "resultsTitle": "PDF items",
+    "resultsSummary": "{{count}} items, {{selected}} selected",
+    "previewTitle": "Extracted text preview",
+    "loading": "Loading...",
+    "processing": "Processing...",
+    "saving": "Saving...",
+    "importLocal": "Scan folder",
+    "importUrls": "Import URLs",
+    "importLinked": "Import linked PDFs",
+    "extract": "Extract text",
+    "preview": "Preview",
+    "save": "Save selection",
+    "empty": "Import PDFs to display detected items here.",
+    "noPreview": "Select or preview a PDF item to inspect extracted text.",
+    "noLinked": "No imported scientific record currently exposes a direct PDF URL.",
+    "ocrRecommended": "OCR recommended",
+    "fields": {
+      "localDirectory": "Local folder",
+      "urlList": "PDF URL list",
+      "language": "Language",
+      "projectName": "Project name",
+      "mode": "Extraction mode"
+    },
+    "modes": {
+      "auto": "Auto detect",
+      "native": "Native text only",
+      "ocr": "OCR only"
+    },
+    "cleaning": {
+      "generate": "Generate cleaned text",
+      "headers": "Remove repeated headers",
+      "footers": "Remove repeated footers",
+      "pageNumbers": "Remove page numbers",
+      "bibliography": "Trim bibliography or references",
+      "whitespace": "Normalize whitespace"
+    },
+    "columns": {
+      "file": "File",
+      "source": "Source",
+      "status": "Status",
+      "pages": "Pages",
+      "mode": "Mode",
+      "actions": "Actions"
+    },
+    "dependencies": {
+      "ready": "OCR ready",
+      "partial": "OCR limited"
+    },
+    "messages": {
+      "localImported": "{{count}} local PDF(s) imported.",
+      "urlImported": "{{count}} remote PDF(s) imported.",
+      "extracted": "{{count}} PDF item(s) processed.",
+      "saved": "{{count}} PDF item(s) saved to the project."
+    },
+    "errors": {
+      "load": "Unable to load the PDF workspace.",
+      "importLocal": "Local PDF import failed.",
+      "importUrls": "PDF URL import failed.",
+      "preview": "PDF preview failed.",
+      "extract": "PDF extraction failed.",
+      "save": "Saving selected PDFs failed."
     }
   },
   "pages": {

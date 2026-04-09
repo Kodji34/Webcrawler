@@ -12,6 +12,7 @@ htmlcov/
 
 node_modules/
 frontend/.vite/
+backend/data/pdf_cache/
 frontend/dist/
 
 .idea/

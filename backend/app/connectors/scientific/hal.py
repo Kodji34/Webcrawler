@@ -39,6 +39,7 @@ class HalConnector(BaseScientificConnector):
                     "abstract_s",
                     "journalTitle_s",
                     "halId_s",
+                    "fileMain_s",
                 ]
             ),
             "q": self._build_query(request),
@@ -84,6 +85,9 @@ class HalConnector(BaseScientificConnector):
         uri = item.get("uri_s")
         if isinstance(uri, list):
             uri = uri[0] if uri else ""
+        pdf_url = item.get("fileMain_s")
+        if isinstance(pdf_url, list):
+            pdf_url = pdf_url[0] if pdf_url else None
 
         return ScientificSearchResult(
             source=ScientificSource.HAL,
@@ -97,5 +101,6 @@ class HalConnector(BaseScientificConnector):
             pmid=None,
             abstract=self._normalize_text(abstract),
             journal=journal,
+            pdf_url=pdf_url,
             keyword_used=keyword,
         )

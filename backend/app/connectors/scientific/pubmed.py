@@ -143,6 +143,7 @@ class PubMedConnector(BaseScientificConnector):
             pmid=self._strip_pmid_prefix(pmid),
             abstract=self._normalize_text(abstract),
             journal=journal,
+            pdf_url=None,
             keyword_used=keyword,
         )
 

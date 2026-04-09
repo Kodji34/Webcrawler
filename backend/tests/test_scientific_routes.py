@@ -122,3 +122,40 @@ def test_scientific_import_endpoint_stores_selection(monkeypatch) -> None:
 
     assert response.status_code == 200
     assert response.json()["imported_count"] == 1
+
+
+def test_scientific_imports_endpoint_returns_local_records(monkeypatch) -> None:
+    client = TestClient(app)
+    monkeypatch.setattr(
+        scientific_route.service,
+        "list_imported_records",
+        lambda: [
+            ScientificImportedRecord(
+                project_name="Local Research Project",
+                source=ScientificSource.OPENALEX,
+                title="Imported record",
+                url="https://example.org/paper.pdf",
+                keyword_used="ai",
+                metadata=ScientificSearchResult(
+                    source=ScientificSource.OPENALEX,
+                    title="Imported record",
+                    authors=["Ada Lovelace"],
+                    publication_date="2024-01-01",
+                    url="https://example.org",
+                    language="en",
+                    document_type="article",
+                    doi="10.1000/example",
+                    pmid=None,
+                    abstract="Preview",
+                    journal="Journal",
+                    pdf_url="https://example.org/paper.pdf",
+                    keyword_used="ai",
+                ),
+            )
+        ],
+    )
+
+    response = client.get("/api/v1/scientific/imports")
+
+    assert response.status_code == 200
+    assert response.json()[0]["metadata"]["pdf_url"] == "https://example.org/paper.pdf"

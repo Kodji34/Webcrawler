@@ -3,6 +3,7 @@ from fastapi import APIRouter, HTTPException
 from backend.app.schemas.scientific import (
     ScientificImportSelectionRequest,
     ScientificImportSelectionResponse,
+    ScientificImportedRecord,
     ScientificSearchRequest,
     ScientificSearchResponse,
     ScientificSourceDescriptor,
@@ -33,3 +34,8 @@ def import_scientific_selection(
     payload: ScientificImportSelectionRequest,
 ) -> ScientificImportSelectionResponse:
     return service.import_selection(payload)
+
+
+@router.get("/imports", summary="List locally stored scientific imports")
+def list_scientific_imports() -> list[ScientificImportedRecord]:
+    return service.list_imported_records()
