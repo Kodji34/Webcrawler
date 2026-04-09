@@ -1,66 +1,116 @@
 {
   "app": {
     "title": "PyCrawler Research Studio",
-    "tagline": "Foundation workspace for the future research crawler stack.",
-    "phaseLabel": "Phase 1",
+    "tagline": "Local workspace for scientific source discovery and import.",
+    "phaseLabel": "Phase 2",
     "localLabel": "Local stack",
     "phaseBoundaryTitle": "Current boundary",
-    "phaseBoundaryBody": "This release only lays the shell, config, and infrastructure wiring for later crawler features."
+    "phaseBoundaryBody": "This release stays focused on scientific connectors, normalized metadata, and local import flows."
   },
   "actions": {
     "language": "Language"
   },
   "nav": {
     "dashboard": "Dashboard",
+    "scientificSearch": "Scientific Search",
     "researchQueue": "Research Queue",
     "collections": "Collections",
     "schedules": "Schedules",
     "settings": "Settings"
   },
   "headers": {
-    "dashboard": "Track foundation readiness, stack wiring, and navigation health.",
+    "dashboard": "Track connector readiness, local storage, and integration status.",
+    "scientificSearch": "Search official scientific APIs, preview normalized records, and import selections.",
     "researchQueue": "Placeholder for crawl requests, research prompts, and queue control.",
     "collections": "Placeholder for source sets, workspace grouping, and captured datasets.",
     "schedules": "Placeholder for recurrence rules, run planning, and automation windows.",
     "settings": "Placeholder for environment, localization, and infrastructure preferences."
   },
   "dashboard": {
+    "heroTitle": "Overview",
+    "heroSubtitle": "Phase 2 adds official scientific connectors and local import capabilities.",
     "offline": "offline",
-    "offlinePhaseName": "Phase 1 ready",
+    "offlinePhaseName": "Phase 2 ready",
     "backendUnavailable": "backend unavailable",
     "backendWarning": "The FastAPI health endpoint is not reachable yet: {{details}}",
-    "phase1Chip": "Phase 1",
-    "scopeTitle": "Foundation scope",
-    "scopeFallback": "FastAPI, React shell, worker bootstrap, and local infra configuration are in place. Product workflows start in Phase 2.",
+    "phase1Chip": "Phase 2",
+    "scopeTitle": "Current scope",
+    "scopeFallback": "Scientific connectors, normalized metadata search, and local import storage are available. Advanced processing stays out of scope.",
     "scopeChecklist": [
-      "Main screens are wired and reachable from the left navigation.",
-      "FR and EN translations are loaded at app start and switch instantly.",
-      "FastAPI and Celery share one local env-driven configuration source.",
-      "PostgreSQL and Redis are prepared for local development through Docker Compose."
+      "Crossref, OpenAlex, PubMed, and HAL are queried through their official APIs only.",
+      "Results are normalized before preview and import.",
+      "Selected records are stored locally together with launched queries.",
+      "FR and EN remain available across the UI."
     ],
-    "stackTitle": "Prepared stack",
+    "stackTitle": "Active stack",
     "stack": {
       "api": "API",
-      "postgres": "PostgreSQL",
-      "redis": "Redis / Celery broker"
+      "postgres": "Local persistence path",
+      "redis": "Worker / Redis"
     },
     "cards": {
       "api": {
         "title": "Backend",
-        "caption": "FastAPI health surface for the Phase 1 app shell."
+        "caption": "FastAPI routes expose scientific source search and import."
       },
       "worker": {
-        "title": "Worker queue",
-        "caption": "Celery queue reserved for future crawl orchestration."
+        "title": "Scientific sources",
+        "caption": "Official connectors available in this release."
       },
       "i18n": {
         "title": "Languages",
-        "caption": "Bilingual shell shipped from day one."
+        "caption": "French and English stay available in Phase 2."
       },
       "phase": {
         "title": "Delivery line",
-        "caption": "Only the foundation is implemented in this release."
+        "caption": "No PDF/OCR, social, advanced cleaning, or Phase 3 work."
       }
+    }
+  },
+  "scientific": {
+    "heroTitle": "Scientific search",
+    "heroSubtitle": "Query official scholarly APIs, inspect normalized metadata, and import selected records locally.",
+    "formTitle": "Search parameters",
+    "resultsTitle": "Search results",
+    "resultsSummary": "{{count}} results, {{selected}} selected",
+    "previewTitle": "Result preview",
+    "search": "Search",
+    "searching": "Searching...",
+    "import": "Import selection",
+    "importing": "Importing...",
+    "importSuccess": "{{count}} record(s) imported locally.",
+    "defaultProject": "Local Research Project",
+    "anyOption": "None",
+    "emptyState": "Run a scientific query to display normalized results here.",
+    "noPreview": "Select a result to inspect its normalized metadata.",
+    "noAbstract": "No abstract available from the selected source.",
+    "openSource": "Open source record",
+    "preview": {
+      "date": "Publication date",
+      "language": "Language",
+      "journal": "Journal / venue",
+      "keyword": "Keyword used"
+    },
+    "fields": {
+      "source": "Source",
+      "query": "Keyword or simple query",
+      "identifierType": "Identifier type",
+      "identifier": "Identifier",
+      "startDate": "Start date",
+      "endDate": "End date",
+      "maxResults": "Max results",
+      "language": "Language"
+    },
+    "columns": {
+      "title": "Title",
+      "authors": "Authors",
+      "date": "Date",
+      "source": "Source"
+    },
+    "errors": {
+      "sources": "Unable to load supported scientific sources.",
+      "search": "Scientific search failed.",
+      "import": "Import failed."
     }
   },
   "pages": {

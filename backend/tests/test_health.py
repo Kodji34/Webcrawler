@@ -11,6 +11,6 @@ def test_health_endpoint_exposes_phase_one_metadata() -> None:
     assert response.status_code == 200
     payload = response.json()
     assert payload["status"] == "ok"
-    assert payload["phase"]["number"] == 1
+    assert payload["phase"]["number"] == 2
     assert set(payload["i18n"]["languages"]) == {"en", "fr"}
     assert payload["services"]["celery_queue"] == "research-default"

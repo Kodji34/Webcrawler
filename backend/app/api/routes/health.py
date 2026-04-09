@@ -5,7 +5,7 @@ from backend.app.core.config import get_settings
 router = APIRouter()
 
 
-@router.get("/health", summary="Phase 1 health and stack metadata")
+@router.get("/health", summary="Phase 2 health and scientific stack metadata")
 def healthcheck() -> dict[str, object]:
     settings = get_settings()
     return {
@@ -13,9 +13,9 @@ def healthcheck() -> dict[str, object]:
         "application": settings.app_name,
         "environment": settings.app_env,
         "phase": {
-            "number": 1,
-            "name": "Phase 1 Foundation",
-            "focus": "Project bootstrap, navigation shell, and local stack wiring",
+            "number": 2,
+            "name": "Phase 2 Scientific Connectors",
+            "focus": "Scientific source connectors, normalized metadata search, and local import flows",
         },
         "i18n": {"languages": ["en", "fr"], "default_language": "en"},
         "services": {
@@ -28,6 +28,7 @@ def healthcheck() -> dict[str, object]:
         },
         "screens": [
             "dashboard",
+            "scientific-search",
             "research-queue",
             "collections",
             "schedules",

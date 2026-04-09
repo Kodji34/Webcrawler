@@ -11,6 +11,7 @@ coverage.xml
 htmlcov/
 
 node_modules/
+frontend/.vite/
 frontend/dist/
 
 .idea/

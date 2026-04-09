@@ -26,6 +26,9 @@ class Settings(BaseSettings):
     redis_db: int = 0
 
     celery_default_queue: str = "research-default"
+    scientific_api_mailto: str | None = None
+    scientific_store_path: str = "backend/data/scientific_store.json"
+    scientific_http_timeout_seconds: float = 20.0
 
     model_config = SettingsConfigDict(
         env_file=".env",

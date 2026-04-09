@@ -1,66 +1,116 @@
 {
   "app": {
     "title": "PyCrawler Research Studio",
-    "tagline": "Espace socle pour la future plateforme de recherche par crawler.",
-    "phaseLabel": "Phase 1",
+    "tagline": "Espace local pour la recherche et l'import de sources scientifiques.",
+    "phaseLabel": "Phase 2",
     "localLabel": "Pile locale",
     "phaseBoundaryTitle": "Limite actuelle",
-    "phaseBoundaryBody": "Cette version pose uniquement la coque, la configuration et le raccordement d'infrastructure avant les vraies fonctions crawler."
+    "phaseBoundaryBody": "Cette version reste centree sur les connecteurs scientifiques, les metadonnees normalisees et l'import local."
   },
   "actions": {
     "language": "Langue"
   },
   "nav": {
     "dashboard": "Tableau de bord",
+    "scientificSearch": "Recherche scientifique",
     "researchQueue": "File de recherche",
     "collections": "Collections",
     "schedules": "Plannings",
     "settings": "Parametres"
   },
   "headers": {
-    "dashboard": "Suivre la readiness du socle, le raccordement de la pile et la navigation.",
+    "dashboard": "Suivre l'etat des connecteurs, du stockage local et des integrations.",
+    "scientificSearch": "Interroger les APIs scientifiques officielles, previsualiser les metadonnees et importer la selection.",
     "researchQueue": "Emplacement reserve pour les demandes de crawl et la file de travaux de recherche.",
     "collections": "Emplacement reserve pour les jeux de sources, espaces de travail et donnees capturees.",
     "schedules": "Emplacement reserve pour les recurrences, la planification et les fenetres d'automatisation.",
     "settings": "Emplacement reserve pour l'environnement, la localisation et les preferences d'infrastructure."
   },
   "dashboard": {
+    "heroTitle": "Vue d'ensemble",
+    "heroSubtitle": "La Phase 2 ajoute les connecteurs scientifiques officiels et l'import local.",
     "offline": "hors ligne",
-    "offlinePhaseName": "Phase 1 prete",
+    "offlinePhaseName": "Phase 2 prete",
     "backendUnavailable": "backend indisponible",
     "backendWarning": "Le point de sante FastAPI n'est pas encore joignable : {{details}}",
-    "phase1Chip": "Phase 1",
-    "scopeTitle": "Perimetre du socle",
-    "scopeFallback": "Le socle FastAPI, la coque React, l'amorce worker et la configuration d'infrastructure locale sont en place. Les vrais workflows arrivent en Phase 2.",
+    "phase1Chip": "Phase 2",
+    "scopeTitle": "Perimetre actuel",
+    "scopeFallback": "Les connecteurs scientifiques, la recherche normalisee et le stockage local des imports sont disponibles. Les traitements avances restent hors perimetre.",
     "scopeChecklist": [
-      "Les ecrans principaux sont relies et accessibles depuis la navigation gauche.",
-      "Les traductions FR et EN sont chargees au demarrage et changent instantanement.",
-      "FastAPI et Celery partagent une configuration locale pilotee par les variables d'environnement.",
-      "PostgreSQL et Redis sont prepares pour le developpement local via Docker Compose."
+      "Crossref, OpenAlex, PubMed et HAL sont interroges uniquement via leurs APIs officielles.",
+      "Les resultats sont normalises avant l'apercu et l'import.",
+      "Les requetes lancees et les imports sont stockes localement.",
+      "Le FR et l'EN restent disponibles dans toute l'interface."
     ],
-    "stackTitle": "Pile preparee",
+    "stackTitle": "Pile active",
     "stack": {
       "api": "API",
-      "postgres": "PostgreSQL",
-      "redis": "Redis / broker Celery"
+      "postgres": "Chemin de stockage local",
+      "redis": "Worker / Redis"
     },
     "cards": {
       "api": {
         "title": "Backend",
-        "caption": "Surface FastAPI minimale pour la coque de la Phase 1."
+        "caption": "Les routes FastAPI exposent la recherche et l'import scientifiques."
       },
       "worker": {
-        "title": "File worker",
-        "caption": "File Celery reservee pour l'orchestration des crawls futurs."
+        "title": "Sources scientifiques",
+        "caption": "Les connecteurs officiels disponibles dans cette version."
       },
       "i18n": {
         "title": "Langues",
-        "caption": "Coque bilingue livree des le premier jalon."
+        "caption": "Le francais et l'anglais restent actifs en Phase 2."
       },
       "phase": {
         "title": "Ligne de livraison",
-        "caption": "Seul le socle est implemente dans cette version."
+        "caption": "Pas de PDF/OCR, reseaux sociaux, nettoyage avance ni travaux Phase 3."
       }
+    }
+  },
+  "scientific": {
+    "heroTitle": "Recherche scientifique",
+    "heroSubtitle": "Interroger les APIs academiques officielles, verifier les metadonnees normalisees et importer la selection localement.",
+    "formTitle": "Parametres de recherche",
+    "resultsTitle": "Resultats",
+    "resultsSummary": "{{count}} resultats, {{selected}} selectionnes",
+    "previewTitle": "Apercu du resultat",
+    "search": "Rechercher",
+    "searching": "Recherche...",
+    "import": "Importer la selection",
+    "importing": "Import...",
+    "importSuccess": "{{count}} element(s) importes localement.",
+    "defaultProject": "Projet local de recherche",
+    "anyOption": "Aucun",
+    "emptyState": "Lance une requete scientifique pour afficher des resultats normalises ici.",
+    "noPreview": "Selectionne un resultat pour inspecter ses metadonnees normalisees.",
+    "noAbstract": "Aucun resume disponible pour cette source.",
+    "openSource": "Ouvrir la fiche source",
+    "preview": {
+      "date": "Date de publication",
+      "language": "Langue",
+      "journal": "Journal / support",
+      "keyword": "Mot-cle utilise"
+    },
+    "fields": {
+      "source": "Source",
+      "query": "Mot-cle ou requete simple",
+      "identifierType": "Type d'identifiant",
+      "identifier": "Identifiant",
+      "startDate": "Date debut",
+      "endDate": "Date fin",
+      "maxResults": "Nombre max",
+      "language": "Langue"
+    },
+    "columns": {
+      "title": "Titre",
+      "authors": "Auteurs",
+      "date": "Date",
+      "source": "Source"
+    },
+    "errors": {
+      "sources": "Impossible de charger les sources scientifiques prises en charge.",
+      "search": "La recherche scientifique a echoue.",
+      "import": "L'import a echoue."
     }
   },
   "pages": {
