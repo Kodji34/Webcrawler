@@ -1,0 +1,114 @@
+{
+  "app": {
+    "title": "PyCrawler Research Studio",
+    "tagline": "Foundation workspace for the future research crawler stack.",
+    "phaseLabel": "Phase 1",
+    "localLabel": "Local stack",
+    "phaseBoundaryTitle": "Current boundary",
+    "phaseBoundaryBody": "This release only lays the shell, config, and infrastructure wiring for later crawler features."
+  },
+  "actions": {
+    "language": "Language"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "researchQueue": "Research Queue",
+    "collections": "Collections",
+    "schedules": "Schedules",
+    "settings": "Settings"
+  },
+  "headers": {
+    "dashboard": "Track foundation readiness, stack wiring, and navigation health.",
+    "researchQueue": "Placeholder for crawl requests, research prompts, and queue control.",
+    "collections": "Placeholder for source sets, workspace grouping, and captured datasets.",
+    "schedules": "Placeholder for recurrence rules, run planning, and automation windows.",
+    "settings": "Placeholder for environment, localization, and infrastructure preferences."
+  },
+  "dashboard": {
+    "offline": "offline",
+    "offlinePhaseName": "Phase 1 ready",
+    "backendUnavailable": "backend unavailable",
+    "backendWarning": "The FastAPI health endpoint is not reachable yet: {{details}}",
+    "phase1Chip": "Phase 1",
+    "scopeTitle": "Foundation scope",
+    "scopeFallback": "FastAPI, React shell, worker bootstrap, and local infra configuration are in place. Product workflows start in Phase 2.",
+    "scopeChecklist": [
+      "Main screens are wired and reachable from the left navigation.",
+      "FR and EN translations are loaded at app start and switch instantly.",
+      "FastAPI and Celery share one local env-driven configuration source.",
+      "PostgreSQL and Redis are prepared for local development through Docker Compose."
+    ],
+    "stackTitle": "Prepared stack",
+    "stack": {
+      "api": "API",
+      "postgres": "PostgreSQL",
+      "redis": "Redis / Celery broker"
+    },
+    "cards": {
+      "api": {
+        "title": "Backend",
+        "caption": "FastAPI health surface for the Phase 1 app shell."
+      },
+      "worker": {
+        "title": "Worker queue",
+        "caption": "Celery queue reserved for future crawl orchestration."
+      },
+      "i18n": {
+        "title": "Languages",
+        "caption": "Bilingual shell shipped from day one."
+      },
+      "phase": {
+        "title": "Delivery line",
+        "caption": "Only the foundation is implemented in this release."
+      }
+    }
+  },
+  "pages": {
+    "phaseChip": "Phase 1 placeholder",
+    "phaseBoundary": "Phase 2 is where these screens gain real workflows, persistence, and crawler execution.",
+    "researchQueue": {
+      "title": "Research Queue",
+      "description": "This screen reserves the entry point for queued research jobs and manual crawl requests.",
+      "checklist": [
+        "Create crawl requests and prompt presets.",
+        "Review queue status before execution logic lands.",
+        "Keep the navigation and page contracts stable for Phase 2."
+      ],
+      "handoffTitle": "Phase 2 handoff",
+      "handoffBody": "Connect queue submission forms, validation, and Celery job dispatch once the domain model is in place."
+    },
+    "collections": {
+      "title": "Collections",
+      "description": "This screen marks the future workspace for source groups, captured pages, and research outputs.",
+      "checklist": [
+        "Reserve the layout for dataset and source grouping.",
+        "Keep placeholder cards ready for table and detail view insertion.",
+        "Expose the screen in both languages from the first release."
+      ],
+      "handoffTitle": "Phase 2 handoff",
+      "handoffBody": "Introduce CRUD endpoints and persistent collection views backed by PostgreSQL."
+    },
+    "schedules": {
+      "title": "Schedules",
+      "description": "This screen keeps room for timed runs, recurring crawls, and automation windows.",
+      "checklist": [
+        "Reserve recurrence controls and execution calendar sections.",
+        "Prepare the route for future scheduler health and worker capacity data.",
+        "Maintain a stable navigation target for tests and onboarding."
+      ],
+      "handoffTitle": "Phase 2 handoff",
+      "handoffBody": "Add schedule models, cron-like definitions, and orchestration hooks for worker execution."
+    },
+    "settings": {
+      "title": "Settings",
+      "description": "This screen centralizes environment visibility, localization, and infrastructure preferences.",
+      "checklist": [
+        "Keep stack information discoverable during local setup.",
+        "Prepare user-facing sections for environment and profile settings.",
+        "Avoid implementing account management before Phase 2."
+      ],
+      "handoffTitle": "Phase 2 handoff",
+      "handoffBody": "Wire secure settings forms, connection checks, and role-aware configuration management later."
+    }
+  }
+}

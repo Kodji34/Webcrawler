@@ -1,0 +1,40 @@
+import DashboardCustomizeOutlinedIcon from '@mui/icons-material/DashboardCustomizeOutlined'
+import EventRepeatOutlinedIcon from '@mui/icons-material/EventRepeatOutlined'
+import LibraryBooksOutlinedIcon from '@mui/icons-material/LibraryBooksOutlined'
+import SettingsSuggestOutlinedIcon from '@mui/icons-material/SettingsSuggestOutlined'
+import TravelExploreOutlinedIcon from '@mui/icons-material/TravelExploreOutlined'
+import type { SvgIconComponent } from '@mui/icons-material'
+
+export type NavigationItem = {
+  key: string
+  path: string
+  icon: SvgIconComponent
+}
+
+export const navigationItems: NavigationItem[] = [
+  {
+    key: 'dashboard',
+    path: '/',
+    icon: DashboardCustomizeOutlinedIcon,
+  },
+  {
+    key: 'researchQueue',
+    path: '/research-queue',
+    icon: TravelExploreOutlinedIcon,
+  },
+  {
+    key: 'collections',
+    path: '/collections',
+    icon: LibraryBooksOutlinedIcon,
+  },
+  {
+    key: 'schedules',
+    path: '/schedules',
+    icon: EventRepeatOutlinedIcon,
+  },
+  {
+    key: 'settings',
+    path: '/settings',
+    icon: SettingsSuggestOutlinedIcon,
+  },
+]

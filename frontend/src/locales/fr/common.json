@@ -1,0 +1,114 @@
+{
+  "app": {
+    "title": "PyCrawler Research Studio",
+    "tagline": "Espace socle pour la future plateforme de recherche par crawler.",
+    "phaseLabel": "Phase 1",
+    "localLabel": "Pile locale",
+    "phaseBoundaryTitle": "Limite actuelle",
+    "phaseBoundaryBody": "Cette version pose uniquement la coque, la configuration et le raccordement d'infrastructure avant les vraies fonctions crawler."
+  },
+  "actions": {
+    "language": "Langue"
+  },
+  "nav": {
+    "dashboard": "Tableau de bord",
+    "researchQueue": "File de recherche",
+    "collections": "Collections",
+    "schedules": "Plannings",
+    "settings": "Parametres"
+  },
+  "headers": {
+    "dashboard": "Suivre la readiness du socle, le raccordement de la pile et la navigation.",
+    "researchQueue": "Emplacement reserve pour les demandes de crawl et la file de travaux de recherche.",
+    "collections": "Emplacement reserve pour les jeux de sources, espaces de travail et donnees capturees.",
+    "schedules": "Emplacement reserve pour les recurrences, la planification et les fenetres d'automatisation.",
+    "settings": "Emplacement reserve pour l'environnement, la localisation et les preferences d'infrastructure."
+  },
+  "dashboard": {
+    "offline": "hors ligne",
+    "offlinePhaseName": "Phase 1 prete",
+    "backendUnavailable": "backend indisponible",
+    "backendWarning": "Le point de sante FastAPI n'est pas encore joignable : {{details}}",
+    "phase1Chip": "Phase 1",
+    "scopeTitle": "Perimetre du socle",
+    "scopeFallback": "Le socle FastAPI, la coque React, l'amorce worker et la configuration d'infrastructure locale sont en place. Les vrais workflows arrivent en Phase 2.",
+    "scopeChecklist": [
+      "Les ecrans principaux sont relies et accessibles depuis la navigation gauche.",
+      "Les traductions FR et EN sont chargees au demarrage et changent instantanement.",
+      "FastAPI et Celery partagent une configuration locale pilotee par les variables d'environnement.",
+      "PostgreSQL et Redis sont prepares pour le developpement local via Docker Compose."
+    ],
+    "stackTitle": "Pile preparee",
+    "stack": {
+      "api": "API",
+      "postgres": "PostgreSQL",
+      "redis": "Redis / broker Celery"
+    },
+    "cards": {
+      "api": {
+        "title": "Backend",
+        "caption": "Surface FastAPI minimale pour la coque de la Phase 1."
+      },
+      "worker": {
+        "title": "File worker",
+        "caption": "File Celery reservee pour l'orchestration des crawls futurs."
+      },
+      "i18n": {
+        "title": "Langues",
+        "caption": "Coque bilingue livree des le premier jalon."
+      },
+      "phase": {
+        "title": "Ligne de livraison",
+        "caption": "Seul le socle est implemente dans cette version."
+      }
+    }
+  },
+  "pages": {
+    "phaseChip": "Placeholder Phase 1",
+    "phaseBoundary": "La Phase 2 donnera a ces ecrans de vrais workflows, de la persistance et l'execution des crawls.",
+    "researchQueue": {
+      "title": "File de recherche",
+      "description": "Cet ecran reserve le point d'entree pour les jobs de recherche et les demandes manuelles de crawl.",
+      "checklist": [
+        "Creer les futures demandes de crawl et presets de prompts.",
+        "Visualiser la file avant l'arrivee de la logique d'execution.",
+        "Stabiliser la navigation et les contrats de page pour la Phase 2."
+      ],
+      "handoffTitle": "Passage a la Phase 2",
+      "handoffBody": "Relier les formulaires, la validation et l'envoi des jobs Celery une fois le modele de domaine etabli."
+    },
+    "collections": {
+      "title": "Collections",
+      "description": "Cet ecran balise le futur espace des groupes de sources, pages capturees et sorties de recherche.",
+      "checklist": [
+        "Reserver la mise en page pour le regroupement des donnees et des sources.",
+        "Preparer des cartes vides pour les futures tables et vues detaillees.",
+        "Exposer l'ecran dans les deux langues des la premiere version."
+      ],
+      "handoffTitle": "Passage a la Phase 2",
+      "handoffBody": "Introduire des endpoints CRUD et des vues persistantes adossees a PostgreSQL."
+    },
+    "schedules": {
+      "title": "Plannings",
+      "description": "Cet ecran garde la place pour les executions programmees, les crawls recurrents et les fenetres d'automatisation.",
+      "checklist": [
+        "Reserver les controles de recurrence et les sections de calendrier.",
+        "Preparer la route pour la sante du scheduler et la capacite worker.",
+        "Maintenir une cible de navigation stable pour les tests et l'onboarding."
+      ],
+      "handoffTitle": "Passage a la Phase 2",
+      "handoffBody": "Ajouter les modeles de planning, les definitions type cron et les hooks d'orchestration vers le worker."
+    },
+    "settings": {
+      "title": "Parametres",
+      "description": "Cet ecran centralise la visibilite de l'environnement, la localisation et les preferences d'infrastructure.",
+      "checklist": [
+        "Rendre les informations de pile visibles pendant l'installation locale.",
+        "Preparer des sections futures pour les reglages utilisateur et environnement.",
+        "Eviter toute gestion de compte avant la Phase 2."
+      ],
+      "handoffTitle": "Passage a la Phase 2",
+      "handoffBody": "Brancher plus tard les formulaires securises, tests de connexion et regles de configuration par role."
+    }
+  }
+}
