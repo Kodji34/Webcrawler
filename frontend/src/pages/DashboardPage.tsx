@@ -8,10 +8,10 @@ export function DashboardPage() {
 
   return (
     <Stack spacing={3}>
-      <Stack spacing={1}>
-        <Typography variant="h2">{t('app.title')}</Typography>
-        <Typography variant="body1" color="text.secondary">
-          {t('app.tagline')}
+      <Stack spacing={0.75}>
+        <Typography variant="h4">{t('dashboard.heroTitle')}</Typography>
+        <Typography variant="body2" color="text.secondary">
+          {t('dashboard.heroSubtitle')}
         </Typography>
       </Stack>
       <DashboardOverview />

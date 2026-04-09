@@ -1,11 +1,11 @@
 {
   "app": {
     "title": "PyCrawler Research Studio",
-    "tagline": "Local workspace for scientific source discovery and import.",
+    "tagline": "Local scientific research workspace.",
     "phaseLabel": "Phase 2",
     "localLabel": "Local stack",
     "phaseBoundaryTitle": "Current boundary",
-    "phaseBoundaryBody": "This release stays focused on scientific connectors, normalized metadata, and local import flows."
+    "phaseBoundaryBody": "Scientific connectors, normalized metadata, and local import only."
   },
   "actions": {
     "language": "Language"
@@ -19,28 +19,28 @@
     "settings": "Settings"
   },
   "headers": {
-    "dashboard": "Track connector readiness, local storage, and integration status.",
-    "scientificSearch": "Search official scientific APIs, preview normalized records, and import selections.",
-    "researchQueue": "Placeholder for crawl requests, research prompts, and queue control.",
-    "collections": "Placeholder for source sets, workspace grouping, and captured datasets.",
-    "schedules": "Placeholder for recurrence rules, run planning, and automation windows.",
-    "settings": "Placeholder for environment, localization, and infrastructure preferences."
+    "dashboard": "Connector status, local storage, and integration readiness.",
+    "scientificSearch": "Official API search, metadata preview, and selection import.",
+    "researchQueue": "Reserved area for crawl requests and research jobs.",
+    "collections": "Reserved area for sources, datasets, and grouped workspaces.",
+    "schedules": "Reserved area for recurrence and local planning.",
+    "settings": "Reserved area for environment and preferences."
   },
   "dashboard": {
     "heroTitle": "Overview",
-    "heroSubtitle": "Phase 2 adds official scientific connectors and local import capabilities.",
+    "heroSubtitle": "Official scientific connectors and local import are ready.",
     "offline": "offline",
     "offlinePhaseName": "Phase 2 ready",
     "backendUnavailable": "backend unavailable",
     "backendWarning": "The FastAPI health endpoint is not reachable yet: {{details}}",
     "phase1Chip": "Phase 2",
     "scopeTitle": "Current scope",
-    "scopeFallback": "Scientific connectors, normalized metadata search, and local import storage are available. Advanced processing stays out of scope.",
+    "scopeFallback": "Normalized search and local storage are available. Advanced processing stays out of scope.",
     "scopeChecklist": [
-      "Crossref, OpenAlex, PubMed, and HAL are queried through their official APIs only.",
+      "Crossref, OpenAlex, PubMed, and HAL use official APIs only.",
       "Results are normalized before preview and import.",
-      "Selected records are stored locally together with launched queries.",
-      "FR and EN remain available across the UI."
+      "Queries and imported records are stored locally.",
+      "FR and EN stay available across the UI."
     ],
     "stackTitle": "Active stack",
     "stack": {
@@ -51,7 +51,7 @@
     "cards": {
       "api": {
         "title": "Backend",
-        "caption": "FastAPI routes expose scientific source search and import."
+        "caption": "FastAPI routes for search and import."
       },
       "worker": {
         "title": "Scientific sources",
@@ -59,17 +59,17 @@
       },
       "i18n": {
         "title": "Languages",
-        "caption": "French and English stay available in Phase 2."
+        "caption": "French and English remain available."
       },
       "phase": {
         "title": "Delivery line",
-        "caption": "No PDF/OCR, social, advanced cleaning, or Phase 3 work."
+        "caption": "No PDF/OCR, social, or Phase 3 work."
       }
     }
   },
   "scientific": {
     "heroTitle": "Scientific search",
-    "heroSubtitle": "Query official scholarly APIs, inspect normalized metadata, and import selected records locally.",
+    "heroSubtitle": "Query official APIs, inspect metadata, and import selected records.",
     "formTitle": "Search parameters",
     "resultsTitle": "Search results",
     "resultsSummary": "{{count}} results, {{selected}} selected",
@@ -114,51 +114,51 @@
     }
   },
   "pages": {
-    "phaseChip": "Phase 1 placeholder",
-    "phaseBoundary": "Phase 2 is where these screens gain real workflows, persistence, and crawler execution.",
+    "phaseChip": "Next",
+    "phaseBoundary": "These screens get real workflows in a later phase.",
     "researchQueue": {
       "title": "Research Queue",
-      "description": "This screen reserves the entry point for queued research jobs and manual crawl requests.",
+      "description": "Future entry point for queued research jobs and manual requests.",
       "checklist": [
-        "Create crawl requests and prompt presets.",
+        "Prepare future crawl requests.",
         "Review queue status before execution logic lands.",
-        "Keep the navigation and page contracts stable for Phase 2."
+        "Keep navigation and page contracts stable."
       ],
-      "handoffTitle": "Phase 2 handoff",
-      "handoffBody": "Connect queue submission forms, validation, and Celery job dispatch once the domain model is in place."
+      "handoffTitle": "Next step",
+      "handoffBody": "Connect forms, validation, and Celery job dispatch."
     },
     "collections": {
       "title": "Collections",
-      "description": "This screen marks the future workspace for source groups, captured pages, and research outputs.",
+      "description": "Future workspace for source groups and research outputs.",
       "checklist": [
-        "Reserve the layout for dataset and source grouping.",
-        "Keep placeholder cards ready for table and detail view insertion.",
-        "Expose the screen in both languages from the first release."
+        "Reserve the layout for grouping.",
+        "Prepare future tables and detail views.",
+        "Keep the screen available in both languages."
       ],
-      "handoffTitle": "Phase 2 handoff",
-      "handoffBody": "Introduce CRUD endpoints and persistent collection views backed by PostgreSQL."
+      "handoffTitle": "Next step",
+      "handoffBody": "Introduce CRUD endpoints and persistent views."
     },
     "schedules": {
       "title": "Schedules",
-      "description": "This screen keeps room for timed runs, recurring crawls, and automation windows.",
+      "description": "Reserved area for timed runs and recurrence.",
       "checklist": [
-        "Reserve recurrence controls and execution calendar sections.",
-        "Prepare the route for future scheduler health and worker capacity data.",
-        "Maintain a stable navigation target for tests and onboarding."
+        "Reserve recurrence controls.",
+        "Prepare the route for scheduler health.",
+        "Maintain a stable target for tests and onboarding."
       ],
-      "handoffTitle": "Phase 2 handoff",
-      "handoffBody": "Add schedule models, cron-like definitions, and orchestration hooks for worker execution."
+      "handoffTitle": "Next step",
+      "handoffBody": "Add schedule models and orchestration hooks."
     },
     "settings": {
       "title": "Settings",
-      "description": "This screen centralizes environment visibility, localization, and infrastructure preferences.",
+      "description": "Environment, localization, and preference visibility.",
       "checklist": [
-        "Keep stack information discoverable during local setup.",
-        "Prepare user-facing sections for environment and profile settings.",
-        "Avoid implementing account management before Phase 2."
+        "Keep stack information visible during local setup.",
+        "Prepare future environment and profile sections.",
+        "Avoid account management at this stage."
       ],
-      "handoffTitle": "Phase 2 handoff",
-      "handoffBody": "Wire secure settings forms, connection checks, and role-aware configuration management later."
+      "handoffTitle": "Next step",
+      "handoffBody": "Add secure forms and connection checks later."
     }
   }
 }

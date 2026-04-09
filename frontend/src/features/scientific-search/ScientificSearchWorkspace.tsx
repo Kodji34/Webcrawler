@@ -241,7 +241,7 @@ export function ScientificSearchWorkspace() {
 
       <Grid container spacing={2}>
         <Grid size={{ xs: 12, lg: 5 }}>
-          <Paper sx={{ p: 2.5 }}>
+          <Paper sx={{ p: 2.25 }}>
             <Stack spacing={2}>
               <Typography variant="h6">{t('scientific.formTitle')}</Typography>
 
@@ -391,6 +391,7 @@ export function ScientificSearchWorkspace() {
                 </Button>
                 {activeSource ? (
                   <Chip
+                    size="small"
                     variant="outlined"
                     label={`${activeSource.label} | ${activeSource.official_api_url}`}
                   />
@@ -401,7 +402,7 @@ export function ScientificSearchWorkspace() {
         </Grid>
 
         <Grid size={{ xs: 12, lg: 7 }}>
-          <Paper sx={{ p: 2.5, height: '100%' }}>
+          <Paper sx={{ p: 2.25, height: '100%' }}>
             <Stack spacing={1.5}>
               <Stack
                 direction={{ xs: 'column', md: 'row' }}
@@ -510,7 +511,7 @@ export function ScientificSearchWorkspace() {
         </Grid>
       </Grid>
 
-      <Paper sx={{ p: 2.5 }}>
+      <Paper sx={{ p: 2.25 }}>
         <Stack spacing={1.25}>
           <Typography variant="h6">{t('scientific.previewTitle')}</Typography>
           {activeResult ? (
@@ -521,7 +522,7 @@ export function ScientificSearchWorkspace() {
                   <Chip size="small" variant="outlined" label={activeResult.document_type} />
                 ) : null}
               </Stack>
-              <Typography variant="h5">{activeResult.title}</Typography>
+              <Typography variant="h6">{activeResult.title}</Typography>
               <Typography variant="body2" color="text.secondary">
                 {activeResult.authors.join(', ') || '-'}
               </Typography>

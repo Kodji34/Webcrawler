@@ -9,8 +9,8 @@ export function ScientificSearchPage() {
   return (
     <Stack spacing={2.5}>
       <Stack spacing={0.75}>
-        <Typography variant="h3">{t('scientific.heroTitle')}</Typography>
-        <Typography variant="body1" color="text.secondary">
+        <Typography variant="h4">{t('scientific.heroTitle')}</Typography>
+        <Typography variant="body2" color="text.secondary">
           {t('scientific.heroSubtitle')}
         </Typography>
       </Stack>

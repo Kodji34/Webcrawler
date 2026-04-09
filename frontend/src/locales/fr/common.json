@@ -1,11 +1,11 @@
 {
   "app": {
     "title": "PyCrawler Research Studio",
-    "tagline": "Espace local pour la recherche et l'import de sources scientifiques.",
+    "tagline": "Recherche scientifique locale.",
     "phaseLabel": "Phase 2",
     "localLabel": "Pile locale",
     "phaseBoundaryTitle": "Limite actuelle",
-    "phaseBoundaryBody": "Cette version reste centree sur les connecteurs scientifiques, les metadonnees normalisees et l'import local."
+    "phaseBoundaryBody": "Connecteurs scientifiques, metadonnees normalisees et import local uniquement."
   },
   "actions": {
     "language": "Langue"
@@ -19,28 +19,28 @@
     "settings": "Parametres"
   },
   "headers": {
-    "dashboard": "Suivre l'etat des connecteurs, du stockage local et des integrations.",
-    "scientificSearch": "Interroger les APIs scientifiques officielles, previsualiser les metadonnees et importer la selection.",
-    "researchQueue": "Emplacement reserve pour les demandes de crawl et la file de travaux de recherche.",
-    "collections": "Emplacement reserve pour les jeux de sources, espaces de travail et donnees capturees.",
-    "schedules": "Emplacement reserve pour les recurrences, la planification et les fenetres d'automatisation.",
-    "settings": "Emplacement reserve pour l'environnement, la localisation et les preferences d'infrastructure."
+    "dashboard": "Etat des connecteurs, du stockage local et des integrations.",
+    "scientificSearch": "Recherche via APIs officielles, apercu des metadonnees et import de selection.",
+    "researchQueue": "Espace reserve pour les demandes de crawl et la file de travaux.",
+    "collections": "Espace reserve pour les sources, jeux de donnees et regroupements.",
+    "schedules": "Espace reserve pour les recurrences et la planification locale.",
+    "settings": "Espace reserve pour l'environnement et les preferences."
   },
   "dashboard": {
     "heroTitle": "Vue d'ensemble",
-    "heroSubtitle": "La Phase 2 ajoute les connecteurs scientifiques officiels et l'import local.",
+    "heroSubtitle": "Connecteurs scientifiques officiels et import local prets.",
     "offline": "hors ligne",
     "offlinePhaseName": "Phase 2 prete",
     "backendUnavailable": "backend indisponible",
     "backendWarning": "Le point de sante FastAPI n'est pas encore joignable : {{details}}",
     "phase1Chip": "Phase 2",
     "scopeTitle": "Perimetre actuel",
-    "scopeFallback": "Les connecteurs scientifiques, la recherche normalisee et le stockage local des imports sont disponibles. Les traitements avances restent hors perimetre.",
+    "scopeFallback": "Recherche normalisee et stockage local disponibles. Les traitements avances restent hors perimetre.",
     "scopeChecklist": [
-      "Crossref, OpenAlex, PubMed et HAL sont interroges uniquement via leurs APIs officielles.",
-      "Les resultats sont normalises avant l'apercu et l'import.",
-      "Les requetes lancees et les imports sont stockes localement.",
-      "Le FR et l'EN restent disponibles dans toute l'interface."
+      "Crossref, OpenAlex, PubMed et HAL passent uniquement par leurs APIs officielles.",
+      "Les resultats sont normalises avant apercu et import.",
+      "Les requetes et imports sont stockes localement.",
+      "Le FR et l'EN restent actifs dans toute l'interface."
     ],
     "stackTitle": "Pile active",
     "stack": {
@@ -51,25 +51,25 @@
     "cards": {
       "api": {
         "title": "Backend",
-        "caption": "Les routes FastAPI exposent la recherche et l'import scientifiques."
+        "caption": "Routes FastAPI pour la recherche et l'import."
       },
       "worker": {
         "title": "Sources scientifiques",
-        "caption": "Les connecteurs officiels disponibles dans cette version."
+        "caption": "Connecteurs officiels actifs dans cette version."
       },
       "i18n": {
         "title": "Langues",
-        "caption": "Le francais et l'anglais restent actifs en Phase 2."
+        "caption": "Francais et anglais disponibles."
       },
       "phase": {
         "title": "Ligne de livraison",
-        "caption": "Pas de PDF/OCR, reseaux sociaux, nettoyage avance ni travaux Phase 3."
+        "caption": "Pas de PDF/OCR, reseaux sociaux ni travaux Phase 3."
       }
     }
   },
   "scientific": {
     "heroTitle": "Recherche scientifique",
-    "heroSubtitle": "Interroger les APIs academiques officielles, verifier les metadonnees normalisees et importer la selection localement.",
+    "heroSubtitle": "Interroger les APIs officielles, verifier les metadonnees et importer la selection.",
     "formTitle": "Parametres de recherche",
     "resultsTitle": "Resultats",
     "resultsSummary": "{{count}} resultats, {{selected}} selectionnes",
@@ -114,51 +114,51 @@
     }
   },
   "pages": {
-    "phaseChip": "Placeholder Phase 1",
-    "phaseBoundary": "La Phase 2 donnera a ces ecrans de vrais workflows, de la persistance et l'execution des crawls.",
+    "phaseChip": "Suite",
+    "phaseBoundary": "Ces ecrans recevront leurs vrais workflows dans une phase suivante.",
     "researchQueue": {
       "title": "File de recherche",
-      "description": "Cet ecran reserve le point d'entree pour les jobs de recherche et les demandes manuelles de crawl.",
+      "description": "Point d'entree futur pour les jobs de recherche et les demandes manuelles.",
       "checklist": [
-        "Creer les futures demandes de crawl et presets de prompts.",
-        "Visualiser la file avant l'arrivee de la logique d'execution.",
-        "Stabiliser la navigation et les contrats de page pour la Phase 2."
+        "Preparer les futures demandes de crawl.",
+        "Visualiser la file avant la logique d'execution.",
+        "Stabiliser la navigation et le contrat de page."
       ],
-      "handoffTitle": "Passage a la Phase 2",
-      "handoffBody": "Relier les formulaires, la validation et l'envoi des jobs Celery une fois le modele de domaine etabli."
+      "handoffTitle": "Etape suivante",
+      "handoffBody": "Relier les formulaires, la validation et l'envoi des jobs Celery."
     },
     "collections": {
       "title": "Collections",
-      "description": "Cet ecran balise le futur espace des groupes de sources, pages capturees et sorties de recherche.",
+      "description": "Futur espace pour les groupes de sources et les sorties de recherche.",
       "checklist": [
-        "Reserver la mise en page pour le regroupement des donnees et des sources.",
-        "Preparer des cartes vides pour les futures tables et vues detaillees.",
-        "Exposer l'ecran dans les deux langues des la premiere version."
+        "Reserver la mise en page pour les regroupements.",
+        "Preparer les futures tables et vues detaillees.",
+        "Garder l'ecran disponible dans les deux langues."
       ],
-      "handoffTitle": "Passage a la Phase 2",
-      "handoffBody": "Introduire des endpoints CRUD et des vues persistantes adossees a PostgreSQL."
+      "handoffTitle": "Etape suivante",
+      "handoffBody": "Introduire des endpoints CRUD et des vues persistantes."
     },
     "schedules": {
       "title": "Plannings",
-      "description": "Cet ecran garde la place pour les executions programmees, les crawls recurrents et les fenetres d'automatisation.",
+      "description": "Espace reserve pour les executions programmees et les recurrences.",
       "checklist": [
-        "Reserver les controles de recurrence et les sections de calendrier.",
-        "Preparer la route pour la sante du scheduler et la capacite worker.",
-        "Maintenir une cible de navigation stable pour les tests et l'onboarding."
+        "Reserver les controles de recurrence.",
+        "Preparer la route pour la sante du scheduler.",
+        "Maintenir une cible stable pour tests et onboarding."
       ],
-      "handoffTitle": "Passage a la Phase 2",
-      "handoffBody": "Ajouter les modeles de planning, les definitions type cron et les hooks d'orchestration vers le worker."
+      "handoffTitle": "Etape suivante",
+      "handoffBody": "Ajouter les modeles de planning et les hooks d'orchestration."
     },
     "settings": {
       "title": "Parametres",
-      "description": "Cet ecran centralise la visibilite de l'environnement, la localisation et les preferences d'infrastructure.",
+      "description": "Visibilite de l'environnement, de la localisation et des preferences.",
       "checklist": [
-        "Rendre les informations de pile visibles pendant l'installation locale.",
-        "Preparer des sections futures pour les reglages utilisateur et environnement.",
-        "Eviter toute gestion de compte avant la Phase 2."
+        "Rendre la pile visible pendant l'installation locale.",
+        "Preparer les futurs reglages utilisateur et environnement.",
+        "Eviter toute gestion de compte a ce stade."
       ],
-      "handoffTitle": "Passage a la Phase 2",
-      "handoffBody": "Brancher plus tard les formulaires securises, tests de connexion et regles de configuration par role."
+      "handoffTitle": "Etape suivante",
+      "handoffBody": "Ajouter plus tard les formulaires securises et tests de connexion."
     }
   }
 }

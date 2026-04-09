@@ -22,7 +22,7 @@ import { useTranslation } from 'react-i18next'
 import { navigationItems } from '../app/navigation'
 import { LanguageToggle } from '../components/LanguageToggle'
 
-const drawerWidth = 290
+const drawerWidth = 272
 
 export function AppShell() {
   const { t } = useTranslation()
@@ -46,11 +46,11 @@ export function AppShell() {
     <Stack sx={{ height: '100%', p: 2 }}>
       <Box
         sx={{
-          p: 2.5,
-          borderRadius: 5,
+          p: 2.25,
+          borderRadius: 3,
           color: 'common.white',
           background:
-            'linear-gradient(160deg, rgba(15, 92, 92, 0.98) 0%, rgba(10, 68, 68, 0.95) 100%)',
+            'linear-gradient(160deg, rgba(29, 111, 214, 0.98) 0%, rgba(21, 82, 160, 0.96) 100%)',
         }}
       >
         <Chip
@@ -62,7 +62,7 @@ export function AppShell() {
             mb: 2,
           }}
         />
-        <Typography variant="h4" sx={{ mb: 1 }}>
+        <Typography variant="h5" sx={{ mb: 0.75 }}>
           {t('app.title')}
         </Typography>
         <Typography variant="body2" sx={{ opacity: 0.82 }}>
@@ -84,7 +84,7 @@ export function AppShell() {
               selected={selected}
               sx={{
                 mb: 0.5,
-                borderRadius: 3,
+                borderRadius: 2.5,
               }}
               onClick={() => {
                 navigate(item.path)
@@ -102,10 +102,10 @@ export function AppShell() {
 
       <Box
         sx={{
-          p: 2,
-          borderRadius: 4,
-          bgcolor: 'rgba(184, 106, 50, 0.08)',
-          border: '1px solid rgba(184, 106, 50, 0.16)',
+          p: 1.75,
+          borderRadius: 2.5,
+          bgcolor: 'rgba(29, 111, 214, 0.06)',
+          border: '1px solid rgba(29, 111, 214, 0.12)',
         }}
       >
         <Typography variant="subtitle2" sx={{ mb: 0.6 }}>
@@ -128,22 +128,23 @@ export function AppShell() {
           width: { lg: `calc(100% - ${drawerWidth}px)` },
           ml: { lg: `${drawerWidth}px` },
           backdropFilter: 'blur(12px)',
-          borderBottom: '1px solid rgba(16, 35, 38, 0.08)',
+          backgroundColor: 'rgba(255, 255, 255, 0.74)',
+          borderBottom: '1px solid rgba(29, 111, 214, 0.08)',
         }}
       >
-        <Toolbar sx={{ gap: 2, minHeight: 82 }}>
+        <Toolbar sx={{ gap: 2, minHeight: 72 }}>
           {!isDesktop ? (
             <IconButton color="inherit" onClick={() => setMobileOpen((open) => !open)}>
               <MenuRoundedIcon />
             </IconButton>
           ) : null}
           <Box sx={{ flexGrow: 1 }}>
-            <Typography variant="h5">{t(`nav.${activeItem.key}`)}</Typography>
+            <Typography variant="h6">{t(`nav.${activeItem.key}`)}</Typography>
             <Typography variant="body2" color="text.secondary">
               {t(`headers.${activeItem.key}`)}
             </Typography>
           </Box>
-          <Chip color="success" label={t('app.localLabel')} />
+          <Chip color="success" size="small" label={t('app.localLabel')} />
           <LanguageToggle />
         </Toolbar>
       </AppBar>
@@ -163,9 +164,9 @@ export function AppShell() {
           sx={{
             '& .MuiDrawer-paper': {
               width: drawerWidth,
-              borderRight: '1px solid rgba(16, 35, 38, 0.08)',
+              borderRight: '1px solid rgba(29, 111, 214, 0.08)',
               background:
-                'linear-gradient(180deg, rgba(255, 250, 244, 0.98) 0%, rgba(245, 239, 229, 0.95) 100%)',
+                'linear-gradient(180deg, rgba(250, 252, 255, 0.98) 0%, rgba(238, 243, 249, 0.96) 100%)',
             },
           }}
         >
@@ -178,7 +179,7 @@ export function AppShell() {
         sx={{
           flexGrow: 1,
           px: { xs: 2, md: 4 },
-          py: { xs: 12, md: 14 },
+          py: { xs: 11, md: 12 },
         }}
       >
         <Outlet />

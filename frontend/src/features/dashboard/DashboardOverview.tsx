@@ -40,25 +40,27 @@ type StatusCardProps = {
 
 function StatusCard({ icon, title, value, caption }: StatusCardProps) {
   return (
-    <Paper className="rise-in" sx={{ p: 2.5, height: '100%' }}>
-      <Stack spacing={1.25}>
+    <Paper className="rise-in" sx={{ p: 2.25, height: '100%' }}>
+      <Stack spacing={1}>
         <Stack direction="row" spacing={1.2} alignItems="center">
           <Box
             sx={{
               display: 'grid',
               placeItems: 'center',
-              width: 42,
-              height: 42,
-              borderRadius: '14px',
-              bgcolor: 'rgba(15, 92, 92, 0.09)',
+              width: 38,
+              height: 38,
+              borderRadius: '10px',
+              bgcolor: 'rgba(29, 111, 214, 0.09)',
               color: 'primary.main',
             }}
           >
             {icon}
           </Box>
-          <Typography variant="h6">{title}</Typography>
+          <Typography variant="subtitle1" fontWeight={700}>
+            {title}
+          </Typography>
         </Stack>
-        <Typography variant="h4">{value}</Typography>
+        <Typography variant="h5">{value}</Typography>
         <Typography variant="body2" color="text.secondary">
           {caption}
         </Typography>
@@ -158,8 +160,9 @@ export function DashboardOverview() {
           <Paper className="rise-in" sx={{ p: 3 }}>
             <Stack spacing={2}>
               <Stack direction="row" spacing={1} alignItems="center">
-                <AutoAwesomeOutlinedIcon color="secondary" />
-                <Typography variant="h5">{t('dashboard.scopeTitle')}</Typography>
+                <AutoAwesomeOutlinedIcon color="primary" />
+                <Typography variant="h6">{t('dashboard.scopeTitle')}</Typography>
+                <Chip label={t('dashboard.phase1Chip')} size="small" color="primary" />
               </Stack>
               <Typography color="text.secondary">
                 {health?.phase.focus ?? t('dashboard.scopeFallback')}
@@ -167,14 +170,18 @@ export function DashboardOverview() {
               <List sx={{ p: 0 }}>
                 {(t('dashboard.scopeChecklist', { returnObjects: true }) as string[]).map(
                   (item) => (
-                    <ListItem key={item} sx={{ px: 0 }}>
-                      <Chip
-                        label={t('dashboard.phase1Chip')}
-                        color="secondary"
-                        size="small"
-                        sx={{ mr: 1.5 }}
+                    <ListItem key={item} sx={{ px: 0, py: 0.5 }}>
+                      <Box
+                        sx={{
+                          width: 8,
+                          height: 8,
+                          borderRadius: '999px',
+                          bgcolor: 'primary.main',
+                          mr: 1.5,
+                          flexShrink: 0,
+                        }}
                       />
-                      <Typography variant="body1">{item}</Typography>
+                      <Typography variant="body2">{item}</Typography>
                     </ListItem>
                   ),
                 )}
@@ -185,7 +192,7 @@ export function DashboardOverview() {
         <Grid size={{ xs: 12, lg: 5 }}>
           <Paper className="rise-in" sx={{ p: 3, height: '100%' }}>
             <Stack spacing={2.25}>
-              <Typography variant="h5">{t('dashboard.stackTitle')}</Typography>
+              <Typography variant="h6">{t('dashboard.stackTitle')}</Typography>
               <Stack spacing={1.25}>
                 <Typography variant="body2" color="text.secondary">
                   {t('dashboard.stack.api')}
