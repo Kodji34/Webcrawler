@@ -24,6 +24,7 @@ describe('App shell', () => {
     expect(await screen.findByText('PyCrawler Research Studio')).toBeInTheDocument()
     expect(screen.getByText('Scientific Search')).toBeInTheDocument()
     expect(screen.getByText('PDF Workspace')).toBeInTheDocument()
+    expect(screen.getByText('Web Imports')).toBeInTheDocument()
     expect(screen.getByText('Research Queue')).toBeInTheDocument()
     expect(screen.getByText('Collections')).toBeInTheDocument()
     expect(screen.getByText('Schedules')).toBeInTheDocument()

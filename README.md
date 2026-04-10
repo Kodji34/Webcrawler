@@ -1,6 +1,6 @@
 # PyCrawler Research Studio
 
-Phase 3 adds a usable PDF ingestion and OCR layer on top of the Phase 1 foundation and the Phase 2 scientific connectors.
+Phase 3 adds a usable PDF ingestion and OCR layer on top of the Phase 1 foundation and the Phase 2 scientific connectors. The scientific workflow now also includes an authorized full-text acquisition layer that only uses official APIs, open repositories, or licensed TDM access.
 
 ## Phase 3 scope
 
@@ -29,11 +29,29 @@ Scientific sources remain:
 - PubMed E-utilities
 - HAL search API
 
+Authorized full-text acquisition sources are:
+
+- Europe PMC / PMC for open access full text when the official endpoint exposes it
+- ScienceDirect / Elsevier through the official TDM API with credentials
+- HAL deposited files when repository metadata exposes a direct accessible file
+- OpenEdition Journals metadata via OAI, with HTML body retrieval only when the page is openly accessible and a license signal is present
+- Cairn as bibliographic metadata only in this phase
+- Erudit when the article page is openly accessible and readable without bypassing restrictions
+
 Phase 3 PDF sources are:
 
 - local directory scan
 - direct remote PDF URLs
 - direct PDF links attached to already imported scientific results
+
+Additional public web imports are available for press articles or HTML pages supplied directly by the user:
+
+- one URL per line from the `Web Imports` screen
+- public HTTP(S) pages only
+- no authenticated browser session
+- no access bypass
+- blocked pages are stored as `not_authorized`
+- PDF URLs are not extracted there and should be sent to the PDF workspace
 
 ## PDF modes
 
@@ -72,6 +90,17 @@ Scientific search endpoints remain available:
 - `POST /api/v1/scientific/search`
 - `POST /api/v1/scientific/import-selection`
 - `GET /api/v1/scientific/imports`
+
+Authorized full-text endpoints:
+
+- `GET /api/v1/fulltext/sources`
+- `GET /api/v1/fulltext/items`
+- `POST /api/v1/fulltext/acquire-imports`
+
+Public web import endpoints:
+
+- `POST /api/v1/web/import-urls`
+- `GET /api/v1/web/items`
 
 Phase 3 PDF endpoints:
 
@@ -127,8 +156,10 @@ Example extraction request:
 Phase 3 keeps persistence intentionally simple in local single-user mode:
 
 - scientific queries and imports are stored in `backend/data/scientific_store.json`
+- full-text acquisition attempts and outcomes are stored in `backend/data/fulltext_store.json`
 - PDF items, jobs, and saved PDF records are stored in `backend/data/pdf_store.json`
 - downloaded remote PDFs are cached under `backend/data/pdf_cache/`
+- public web article imports are stored in `backend/data/web_store.json`
 - no PostgreSQL domain models or multi-user access were added for this phase
 
 ## Required system dependencies
@@ -156,9 +187,10 @@ If Tesseract is missing:
 
 1. Copy `.env.example` to `.env`.
 2. Optionally set `SCIENTIFIC_API_MAILTO` for APIs that recommend contact identification.
-3. Ensure Tesseract is installed and available on `PATH` if you want OCR support.
-4. Run `scripts\start-local.ps1` from PowerShell, or `scripts\start-local.bat` from Command Prompt.
-5. Open `http://127.0.0.1:5173` and use both `Scientific Search` and `PDF Workspace`.
+3. Set `ELSEVIER_API_KEY` and, if your institution requires it, `ELSEVIER_INSTTOKEN` for licensed ScienceDirect TDM access.
+4. Ensure Tesseract is installed and available on `PATH` if you want OCR support.
+5. Run `scripts\start-local.ps1` from PowerShell, or `scripts\start-local.bat` from Command Prompt.
+6. Open `http://127.0.0.1:5173` and use both `Scientific Search` and `PDF Workspace`.
 
 ## Manual run
 
@@ -198,6 +230,11 @@ npm run build --prefix frontend
 
 ## Current limitations
 
+- authorized full-text acquisition does not bypass paywalls and never scrapes blocked pages
+- Elsevier full text works only when official credentials are configured and the institution is entitled
+- Cairn stays metadata-only in this phase because no public official automated full-text path is configured here
+- OpenEdition and Erudit HTML extraction is heuristic and runs only when the article page is directly readable
+- web article imports are URL-based and public-page only; they do not use logged-in accounts
 - OCR quality depends on the local Tesseract installation and the scanned PDF quality
 - the bibliography trimming heuristic is approximate and based on heading detection
 - repeated header and footer detection is frequency-based and may miss irregular layouts

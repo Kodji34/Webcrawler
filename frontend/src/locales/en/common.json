@@ -14,6 +14,7 @@
     "dashboard": "Dashboard",
     "scientificSearch": "Scientific Search",
     "pdfWorkspace": "PDF Workspace",
+    "webImports": "Web Imports",
     "researchQueue": "Research Queue",
     "collections": "Collections",
     "schedules": "Schedules",
@@ -21,8 +22,9 @@
   },
   "headers": {
     "dashboard": "Connector status, local storage, and integration readiness.",
-    "scientificSearch": "Official API search, metadata preview, and selection import.",
+    "scientificSearch": "Official API search, selection import, and authorized full-text attempts.",
     "pdfWorkspace": "Import PDFs, choose native text or OCR, preview the output, and save the selection.",
+    "webImports": "Import public article links without authenticated sessions or bypassing access controls.",
     "researchQueue": "Reserved area for crawl requests and research jobs.",
     "collections": "Reserved area for sources, datasets, and grouped workspaces.",
     "schedules": "Reserved area for recurrence and local planning.",
@@ -72,7 +74,7 @@
   },
   "scientific": {
     "heroTitle": "Scientific search",
-    "heroSubtitle": "Query official APIs, inspect metadata, and import selected records.",
+    "heroSubtitle": "Query official APIs, inspect metadata, import selected records, and attempt authorized full-text retrieval.",
     "formTitle": "Search parameters",
     "resultsTitle": "Search results",
     "resultsSummary": "{{count}} results, {{selected}} selected",
@@ -110,10 +112,51 @@
       "date": "Date",
       "source": "Source"
     },
+    "pagination": {
+      "rowsPerPage": "Rows per page",
+      "displayedRows": "{{from}}-{{to}} of {{count}}"
+    },
+    "fullText": {
+      "title": "Authorized full text",
+      "subtitle": "Attempt compliant full-text retrieval from stored scientific imports.",
+      "previewTitle": "Full-text preview",
+      "refresh": "Refresh",
+      "acquire": "Acquire full text",
+      "acquiring": "Acquiring...",
+      "loading": "Loading imports...",
+      "empty": "Import scientific results first before attempting full-text retrieval.",
+      "noPreview": "Select an imported record to inspect its retrieval status.",
+      "noText": "No full text was retrieved automatically for this item.",
+      "open": "Open full-text resource",
+      "messages": {
+        "acquired": "{{count}} full text item(s) retrieved."
+      },
+      "columns": {
+        "title": "Scientific import",
+        "source": "Connector",
+        "status": "Outcome",
+        "access": "Access"
+      },
+      "outcomes": {
+        "full_text_retrieved": "Full text retrieved",
+        "full_text_not_authorized": "Not authorized",
+        "metadata_only": "Metadata only",
+        "failed": "Failed"
+      },
+      "access": {
+        "open_access": "Open access",
+        "authenticated_api": "Authenticated API",
+        "bibliographic_only": "Bibliographic only",
+        "not_authorized": "Not authorized",
+        "unknown": "Unknown"
+      }
+    },
     "errors": {
       "sources": "Unable to load supported scientific sources.",
       "search": "Scientific search failed.",
-      "import": "Import failed."
+      "import": "Import failed.",
+      "fullTextLoad": "Unable to load the full-text acquisition layer.",
+      "fullTextAcquire": "Authorized full-text retrieval failed."
     }
   },
   "pdf": {
@@ -186,6 +229,45 @@
       "preview": "PDF preview failed.",
       "extract": "PDF extraction failed.",
       "save": "Saving selected PDFs failed."
+    }
+  },
+  "web": {
+    "heroTitle": "Web imports",
+    "heroSubtitle": "Paste public news article or HTML page links, extract accessible content, and keep a clear access status.",
+    "defaultProject": "Local Research Project",
+    "formTitle": "Links to import",
+    "formHelp": "One URL per line. Blocked pages stay marked as not authorized; no web account session or bypass is used.",
+    "resultsTitle": "Imported articles",
+    "resultsSummary": "{{count}} stored link(s)",
+    "previewTitle": "Preview",
+    "import": "Import links",
+    "importing": "Importing...",
+    "loading": "Loading...",
+    "empty": "Paste article links to start.",
+    "noPreview": "Select an imported article to preview it.",
+    "noText": "No usable text was retrieved automatically.",
+    "fields": {
+      "urls": "Article URLs",
+      "language": "Language"
+    },
+    "columns": {
+      "title": "Title",
+      "domain": "Domain",
+      "status": "Status",
+      "language": "Language"
+    },
+    "status": {
+      "text_retrieved": "Text retrieved",
+      "metadata_only": "Metadata only",
+      "not_authorized": "Not authorized",
+      "failed": "Failed"
+    },
+    "messages": {
+      "imported": "{{count}} link(s) imported, {{text}} with text."
+    },
+    "errors": {
+      "load": "Unable to load web imports.",
+      "import": "Web link import failed."
     }
   },
   "pages": {

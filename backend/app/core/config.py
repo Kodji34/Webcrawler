@@ -29,9 +29,15 @@ class Settings(BaseSettings):
     scientific_api_mailto: str | None = None
     scientific_store_path: str = "backend/data/scientific_store.json"
     scientific_http_timeout_seconds: float = 20.0
+    fulltext_store_path: str = "backend/data/fulltext_store.json"
+    fulltext_http_timeout_seconds: float = 20.0
+    elsevier_api_key: str | None = None
+    elsevier_insttoken: str | None = None
     pdf_store_path: str = "backend/data/pdf_store.json"
     pdf_download_dir: str = "backend/data/pdf_cache"
     pdf_http_timeout_seconds: float = 30.0
+    web_store_path: str = "backend/data/web_store.json"
+    web_http_timeout_seconds: float = 20.0
 
     model_config = SettingsConfigDict(
         env_file=".env",

@@ -14,6 +14,7 @@
     "dashboard": "Tableau de bord",
     "scientificSearch": "Recherche scientifique",
     "pdfWorkspace": "Espace PDF",
+    "webImports": "Import web",
     "researchQueue": "File de recherche",
     "collections": "Collections",
     "schedules": "Plannings",
@@ -21,8 +22,9 @@
   },
   "headers": {
     "dashboard": "Etat des connecteurs, du stockage local et des integrations.",
-    "scientificSearch": "Recherche via APIs officielles, apercu des metadonnees et import de selection.",
+    "scientificSearch": "Recherche via APIs officielles, import de selection et tentative de texte integral autorise.",
     "pdfWorkspace": "Importer des PDF, choisir texte natif ou OCR, previsualiser et enregistrer la selection.",
+    "webImports": "Importer des liens publics d'articles web sans session connectee ni contournement.",
     "researchQueue": "Espace reserve pour les demandes de crawl et la file de travaux.",
     "collections": "Espace reserve pour les sources, jeux de donnees et regroupements.",
     "schedules": "Espace reserve pour les recurrences et la planification locale.",
@@ -72,7 +74,7 @@
   },
   "scientific": {
     "heroTitle": "Recherche scientifique",
-    "heroSubtitle": "Interroger les APIs officielles, verifier les metadonnees et importer la selection.",
+    "heroSubtitle": "Interroger les APIs officielles, verifier les metadonnees, importer la selection et tenter le texte integral autorise.",
     "formTitle": "Parametres de recherche",
     "resultsTitle": "Resultats",
     "resultsSummary": "{{count}} resultats, {{selected}} selectionnes",
@@ -110,10 +112,51 @@
       "date": "Date",
       "source": "Source"
     },
+    "pagination": {
+      "rowsPerPage": "Lignes par page",
+      "displayedRows": "{{from}}-{{to}} sur {{count}}"
+    },
+    "fullText": {
+      "title": "Texte integral autorise",
+      "subtitle": "Tenter la recuperation autorisee depuis les imports scientifiques stockes.",
+      "previewTitle": "Apercu du texte integral",
+      "refresh": "Rafraichir",
+      "acquire": "Recuperer le texte integral",
+      "acquiring": "Recuperation...",
+      "loading": "Chargement des imports...",
+      "empty": "Importe d'abord des resultats scientifiques pour tenter la recuperation du texte integral.",
+      "noPreview": "Selectionne un import pour voir le statut de recuperation.",
+      "noText": "Aucun texte integral n'a ete recupere automatiquement pour cet element.",
+      "open": "Ouvrir la ressource texte integral",
+      "messages": {
+        "acquired": "{{count}} texte(s) integral(aux) recupere(s)."
+      },
+      "columns": {
+        "title": "Import scientifique",
+        "source": "Connecteur",
+        "status": "Resultat",
+        "access": "Acces"
+      },
+      "outcomes": {
+        "full_text_retrieved": "Texte recupere",
+        "full_text_not_authorized": "Acces non autorise",
+        "metadata_only": "Metadonnees seules",
+        "failed": "Echec"
+      },
+      "access": {
+        "open_access": "Acces ouvert",
+        "authenticated_api": "API authentifiee",
+        "bibliographic_only": "Bibliographique",
+        "not_authorized": "Non autorise",
+        "unknown": "Indetermine"
+      }
+    },
     "errors": {
       "sources": "Impossible de charger les sources scientifiques prises en charge.",
       "search": "La recherche scientifique a echoue.",
-      "import": "L'import a echoue."
+      "import": "L'import a echoue.",
+      "fullTextLoad": "Impossible de charger la couche de texte integral.",
+      "fullTextAcquire": "La recuperation autorisee du texte integral a echoue."
     }
   },
   "pdf": {
@@ -186,6 +229,45 @@
       "preview": "La previsualisation PDF a echoue.",
       "extract": "L'extraction PDF a echoue.",
       "save": "L'enregistrement des PDF selectionnes a echoue."
+    }
+  },
+  "web": {
+    "heroTitle": "Import web",
+    "heroSubtitle": "Coller des liens publics d'articles de presse ou pages HTML, extraire ce qui est accessible et garder un statut clair.",
+    "defaultProject": "Projet local de recherche",
+    "formTitle": "Liens a importer",
+    "formHelp": "Une URL par ligne. Les pages bloquees restent marquees non autorisees; aucun compte web ni bypass n'est utilise.",
+    "resultsTitle": "Articles importes",
+    "resultsSummary": "{{count}} lien(s) stocke(s)",
+    "previewTitle": "Apercu",
+    "import": "Importer les liens",
+    "importing": "Import...",
+    "loading": "Chargement...",
+    "empty": "Colle des liens d'articles pour demarrer.",
+    "noPreview": "Selectionne un article importe pour voir son apercu.",
+    "noText": "Aucun texte exploitable n'a ete recupere automatiquement.",
+    "fields": {
+      "urls": "URLs d'articles",
+      "language": "Langue"
+    },
+    "columns": {
+      "title": "Titre",
+      "domain": "Domaine",
+      "status": "Statut",
+      "language": "Langue"
+    },
+    "status": {
+      "text_retrieved": "Texte recupere",
+      "metadata_only": "Metadonnees seules",
+      "not_authorized": "Non autorise",
+      "failed": "Echec"
+    },
+    "messages": {
+      "imported": "{{count}} lien(s) importe(s), {{text}} avec texte."
+    },
+    "errors": {
+      "load": "Impossible de charger les imports web.",
+      "import": "L'import des liens web a echoue."
     }
   },
   "pages": {

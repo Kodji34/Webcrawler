@@ -1,5 +1,6 @@
 import DashboardCustomizeOutlinedIcon from '@mui/icons-material/DashboardCustomizeOutlined'
 import EventRepeatOutlinedIcon from '@mui/icons-material/EventRepeatOutlined'
+import FeedOutlinedIcon from '@mui/icons-material/FeedOutlined'
 import LibraryBooksOutlinedIcon from '@mui/icons-material/LibraryBooksOutlined'
 import PictureAsPdfOutlinedIcon from '@mui/icons-material/PictureAsPdfOutlined'
 import ScienceOutlinedIcon from '@mui/icons-material/ScienceOutlined'
@@ -28,6 +29,11 @@ export const navigationItems: NavigationItem[] = [
     key: 'pdfWorkspace',
     path: '/pdf-workspace',
     icon: PictureAsPdfOutlinedIcon,
+  },
+  {
+    key: 'webImports',
+    path: '/web-imports',
+    icon: FeedOutlinedIcon,
   },
   {
     key: 'researchQueue',

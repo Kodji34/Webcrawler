@@ -19,6 +19,8 @@ import {
   TableBody,
   TableCell,
   TableHead,
+  TableContainer,
+  TablePagination,
   TableRow,
   TextField,
   Typography,
@@ -26,6 +28,7 @@ import {
 import { startTransition, useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
+import { FullTextAcquisitionPanel } from './FullTextAcquisitionPanel'
 import type {
   IdentifierType,
   ScientificSearchResponse,
@@ -67,6 +70,8 @@ export function ScientificSearchWorkspace() {
   const [results, setResults] = useState<ScientificSearchResult[]>([])
   const [selectedKeys, setSelectedKeys] = useState<string[]>([])
   const [activeKey, setActiveKey] = useState<string | null>(null)
+  const [page, setPage] = useState(0)
+  const [rowsPerPage, setRowsPerPage] = useState(5)
   const [isLoadingSources, setIsLoadingSources] = useState(true)
   const [isSearching, setIsSearching] = useState(false)
   const [isImporting, setIsImporting] = useState(false)
@@ -120,6 +125,11 @@ export function ScientificSearchWorkspace() {
     () => results.filter((result) => selectedKeys.includes(resultKey(result))),
     [results, selectedKeys],
   )
+
+  const paginatedResults = useMemo(() => {
+    const start = page * rowsPerPage
+    return results.slice(start, start + rowsPerPage)
+  }, [page, results, rowsPerPage])
 
   const activeResult = useMemo(() => {
     if (activeKey) {
@@ -185,6 +195,7 @@ export function ScientificSearchWorkspace() {
         setResults(payload.results)
         setSelectedKeys([])
         setActiveKey(payload.results[0] ? resultKey(payload.results[0]) : null)
+        setPage(0)
       })
     } catch (error) {
       setResults([])
@@ -403,7 +414,7 @@ export function ScientificSearchWorkspace() {
 
         <Grid size={{ xs: 12, lg: 7 }}>
           <Paper sx={{ p: 2.25, height: '100%' }}>
-            <Stack spacing={1.5}>
+            <Stack spacing={1.5} sx={{ minHeight: 520 }}>
               <Stack
                 direction={{ xs: 'column', md: 'row' }}
                 justifyContent="space-between"
@@ -429,83 +440,114 @@ export function ScientificSearchWorkspace() {
                 </Button>
               </Stack>
 
-              <Table size="small">
-                <TableHead>
-                  <TableRow>
-                    <TableCell padding="checkbox">
-                      <Checkbox
-                        checked={allSelected}
-                        indeterminate={
-                          selectedKeys.length > 0 && selectedKeys.length < results.length
-                        }
-                        onChange={(_, checked) => {
-                          setSelectedKeys(checked ? results.map(resultKey) : [])
-                        }}
-                      />
-                    </TableCell>
-                    <TableCell>{t('scientific.columns.title')}</TableCell>
-                    <TableCell>{t('scientific.columns.authors')}</TableCell>
-                    <TableCell>{t('scientific.columns.date')}</TableCell>
-                    <TableCell>{t('scientific.columns.source')}</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {results.map((result) => {
-                    const key = resultKey(result)
-                    const checked = selectedKeys.includes(key)
-                    return (
-                      <TableRow
-                        key={key}
-                        hover
-                        selected={activeKey === key}
-                        sx={{ cursor: 'pointer' }}
-                        onClick={() => setActiveKey(key)}
-                      >
-                        <TableCell padding="checkbox">
-                          <Checkbox
-                            checked={checked}
-                            onChange={(_, nextChecked) => {
-                              setSelectedKeys((current) =>
-                                nextChecked
-                                  ? [...current, key]
-                                  : current.filter((item) => item !== key),
-                              )
-                            }}
-                          />
-                        </TableCell>
-                        <TableCell sx={{ minWidth: 240 }}>
-                          <Typography variant="body2" fontWeight={600}>
-                            {result.title}
-                          </Typography>
-                          {result.journal ? (
-                            <Typography variant="caption" color="text.secondary">
-                              {result.journal}
+              <TableContainer
+                sx={{
+                  border: (theme) => `1px solid ${theme.palette.divider}`,
+                  borderRadius: 2,
+                  maxHeight: 360,
+                  flex: 1,
+                }}
+              >
+                <Table size="small" stickyHeader>
+                  <TableHead>
+                    <TableRow>
+                      <TableCell padding="checkbox">
+                        <Checkbox
+                          checked={allSelected}
+                          indeterminate={
+                            selectedKeys.length > 0 && selectedKeys.length < results.length
+                          }
+                          onChange={(_, checked) => {
+                            setSelectedKeys(checked ? results.map(resultKey) : [])
+                          }}
+                        />
+                      </TableCell>
+                      <TableCell>{t('scientific.columns.title')}</TableCell>
+                      <TableCell>{t('scientific.columns.authors')}</TableCell>
+                      <TableCell>{t('scientific.columns.date')}</TableCell>
+                      <TableCell>{t('scientific.columns.source')}</TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {paginatedResults.map((result) => {
+                      const key = resultKey(result)
+                      const checked = selectedKeys.includes(key)
+                      return (
+                        <TableRow
+                          key={key}
+                          hover
+                          selected={activeKey === key}
+                          sx={{ cursor: 'pointer' }}
+                          onClick={() => setActiveKey(key)}
+                        >
+                          <TableCell padding="checkbox">
+                            <Checkbox
+                              checked={checked}
+                              onChange={(_, nextChecked) => {
+                                setSelectedKeys((current) =>
+                                  nextChecked
+                                    ? [...current, key]
+                                    : current.filter((item) => item !== key),
+                                )
+                              }}
+                            />
+                          </TableCell>
+                          <TableCell sx={{ minWidth: 240 }}>
+                            <Typography variant="body2" fontWeight={600}>
+                              {result.title}
                             </Typography>
-                          ) : null}
-                        </TableCell>
-                        <TableCell>
-                          <Typography variant="body2">
-                            {result.authors.slice(0, 3).join(', ') || '-'}
+                            {result.journal ? (
+                              <Typography variant="caption" color="text.secondary">
+                                {result.journal}
+                              </Typography>
+                            ) : null}
+                          </TableCell>
+                          <TableCell>
+                            <Typography variant="body2">
+                              {result.authors.slice(0, 3).join(', ') || '-'}
+                            </Typography>
+                          </TableCell>
+                          <TableCell>{result.publication_date || '-'}</TableCell>
+                          <TableCell>
+                            <Chip size="small" label={result.source} />
+                          </TableCell>
+                        </TableRow>
+                      )
+                    })}
+                    {!results.length ? (
+                      <TableRow>
+                        <TableCell colSpan={5}>
+                          <Typography variant="body2" color="text.secondary">
+                            {t('scientific.emptyState')}
                           </Typography>
-                        </TableCell>
-                        <TableCell>{result.publication_date || '-'}</TableCell>
-                        <TableCell>
-                          <Chip size="small" label={result.source} />
                         </TableCell>
                       </TableRow>
-                    )
-                  })}
-                  {!results.length ? (
-                    <TableRow>
-                      <TableCell colSpan={5}>
-                        <Typography variant="body2" color="text.secondary">
-                          {t('scientific.emptyState')}
-                        </Typography>
-                      </TableCell>
-                    </TableRow>
-                  ) : null}
-                </TableBody>
-              </Table>
+                    ) : null}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+
+              <TablePagination
+                component="div"
+                count={results.length}
+                page={page}
+                onPageChange={(_, nextPage) => setPage(nextPage)}
+                rowsPerPage={rowsPerPage}
+                onRowsPerPageChange={(event) => {
+                  setRowsPerPage(Number(event.target.value))
+                  setPage(0)
+                }}
+                rowsPerPageOptions={[5, 10, 20]}
+                labelRowsPerPage={t('scientific.pagination.rowsPerPage')}
+                labelDisplayedRows={({ from, to, count }) =>
+                  t('scientific.pagination.displayedRows', {
+                    from,
+                    to,
+                    count,
+                  })
+                }
+                sx={{ px: 0.5 }}
+              />
             </Stack>
           </Paper>
         </Grid>
@@ -573,6 +615,8 @@ export function ScientificSearchWorkspace() {
           )}
         </Stack>
       </Paper>
+
+      <FullTextAcquisitionPanel />
     </Stack>
   )
 }

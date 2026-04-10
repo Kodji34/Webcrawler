@@ -22,6 +22,30 @@ System tools:
 - `tesseract` on `PATH` for OCR
 - `ocrmypdf` optional, detected only
 
+## Authorized full-text dependencies
+
+Environment variables:
+
+- `ELSEVIER_API_KEY` for ScienceDirect / Elsevier TDM
+- `ELSEVIER_INSTTOKEN` when institutional entitlement requires it
+
+Notes:
+
+- Europe PMC / PMC uses official open access endpoints only
+- HAL uses metadata plus deposited files exposed by the repository
+- OpenEdition and Erudit attempt HTML retrieval only when the page remains openly accessible
+- Cairn stays metadata-only in the current implementation
+
+## Public web imports
+
+The `Web Imports` screen accepts direct article/page URLs, one per line. This is not a general crawler:
+
+- accepted schemes: `http` and `https`
+- blocked sources return `not_authorized`
+- non-HTML responses are stored as metadata-only
+- PDF URLs should be handled by the PDF workspace
+- no authenticated browser session or bypass is attempted
+
 ## Useful commands
 
 Install:
@@ -60,3 +84,5 @@ npm run build --prefix frontend
 - OCR uses `pytesseract` over rendered page images from PyMuPDF
 - auto mode is heuristic-based and intentionally conservative
 - cleaning options are opt-in and limited to PDF-specific heuristics
+- authorized full-text acquisition keeps explicit outcomes: retrieved, not authorized, metadata only, or failed
+- public web imports keep explicit outcomes: text retrieved, metadata only, not authorized, or failed
