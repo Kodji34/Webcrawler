@@ -270,6 +270,44 @@
       "import": "Web link import failed."
     }
   },
+  "corpus": {
+    "heroTitle": "Corpora",
+    "heroSubtitle": "Assemble already imported texts into local corpora with simple statistics.",
+    "builderTitle": "New corpus",
+    "sourcesTitle": "Available sources",
+    "sourcesSummary": "{{count}} source(s) with text, {{selected}} selected",
+    "corporaTitle": "Local corpora",
+    "create": "Create corpus",
+    "creating": "Creating...",
+    "loading": "Loading...",
+    "emptySources": "No usable text yet. Extract PDFs, full text, or web articles first.",
+    "emptyCorpora": "No corpus created yet.",
+    "boundaryNote": "Phase 4 boundary: local assembly, simple statistics, and plain text export. No TreeTagger or advanced IRaMuTeQ.",
+    "noDescription": "No description.",
+    "exportText": "Download plain text export",
+    "cardStats": "{{docs}} document(s), {{words}} word(s)",
+    "fields": {
+      "title": "Corpus title",
+      "description": "Description"
+    },
+    "columns": {
+      "title": "Title",
+      "type": "Type",
+      "language": "Language"
+    },
+    "stats": {
+      "documents": "{{count}} documents",
+      "words": "{{count}} words",
+      "characters": "{{count}} characters"
+    },
+    "messages": {
+      "created": "Corpus created with {{count}} document(s)."
+    },
+    "errors": {
+      "load": "Unable to load corpora.",
+      "create": "Corpus creation failed."
+    }
+  },
   "pages": {
     "phaseChip": "Next",
     "phaseBoundary": "These screens get real workflows in a later phase.",

@@ -38,6 +38,7 @@ class Settings(BaseSettings):
     pdf_http_timeout_seconds: float = 30.0
     web_store_path: str = "backend/data/web_store.json"
     web_http_timeout_seconds: float = 20.0
+    corpus_store_path: str = "backend/data/corpus_store.json"
 
     model_config = SettingsConfigDict(
         env_file=".env",

@@ -270,6 +270,44 @@
       "import": "L'import des liens web a echoue."
     }
   },
+  "corpus": {
+    "heroTitle": "Corpus",
+    "heroSubtitle": "Assembler les textes deja importes en corpus locaux avec statistiques simples.",
+    "builderTitle": "Nouveau corpus",
+    "sourcesTitle": "Sources disponibles",
+    "sourcesSummary": "{{count}} source(s) avec texte, {{selected}} selectionnee(s)",
+    "corporaTitle": "Corpus locaux",
+    "create": "Creer le corpus",
+    "creating": "Creation...",
+    "loading": "Chargement...",
+    "emptySources": "Aucun texte exploitable. Extrait d'abord des PDF, du texte integral ou des articles web.",
+    "emptyCorpora": "Aucun corpus cree pour le moment.",
+    "boundaryNote": "Phase 4 limitee: assemblage local, statistiques simples et export texte brut. Pas de TreeTagger ni IRaMuTeQ avance.",
+    "noDescription": "Aucune description.",
+    "exportText": "Telecharger l'export texte brut",
+    "cardStats": "{{docs}} document(s), {{words}} mot(s)",
+    "fields": {
+      "title": "Titre du corpus",
+      "description": "Description"
+    },
+    "columns": {
+      "title": "Titre",
+      "type": "Type",
+      "language": "Langue"
+    },
+    "stats": {
+      "documents": "{{count}} documents",
+      "words": "{{count}} mots",
+      "characters": "{{count}} caracteres"
+    },
+    "messages": {
+      "created": "Corpus cree avec {{count}} document(s)."
+    },
+    "errors": {
+      "load": "Impossible de charger les corpus.",
+      "create": "La creation du corpus a echoue."
+    }
+  },
   "pages": {
     "phaseChip": "Suite",
     "phaseBoundary": "Ces ecrans recevront leurs vrais workflows dans une phase suivante.",

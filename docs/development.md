@@ -86,3 +86,11 @@ npm run build --prefix frontend
 - cleaning options are opt-in and limited to PDF-specific heuristics
 - authorized full-text acquisition keeps explicit outcomes: retrieved, not authorized, metadata only, or failed
 - public web imports keep explicit outcomes: text retrieved, metadata only, not authorized, or failed
+
+## Phase 4 corpus workflow
+
+- corpus source candidates come from saved PDF records, authorized full-text items, and web imports that contain text
+- corpus creation copies the selected text into `backend/data/corpus_store.json`
+- statistics are simple counts only: documents, words, characters, source types, and languages
+- plain text export is available at `/api/v1/corpus/items/{corpus_id}/export-text`
+- TreeTagger, advanced IRaMuTeQ export, and advanced global cleaning are intentionally not implemented

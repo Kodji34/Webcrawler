@@ -1,6 +1,14 @@
 # PyCrawler Research Studio
 
-Phase 3 adds a usable PDF ingestion and OCR layer on top of the Phase 1 foundation and the Phase 2 scientific connectors. The scientific workflow now also includes an authorized full-text acquisition layer that only uses official APIs, open repositories, or licensed TDM access.
+Phase 4 adds a local corpus workflow on top of the Phase 1 foundation, Phase 2 scientific connectors, and Phase 3 PDF/OCR pipeline. The scientific workflow also includes an authorized full-text acquisition layer that only uses official APIs, open repositories, or licensed TDM access.
+
+## Phase 4 scope
+
+- keep Phase 1 to Phase 3 flows intact
+- assemble local corpora from already imported PDF, authorized full-text, and public web article texts
+- show simple corpus statistics: documents, words, characters, source types, languages
+- provide a basic plain text export
+- avoid advanced global cleaning, TreeTagger, and advanced IRaMuTeQ exports
 
 ## Phase 3 scope
 
@@ -102,6 +110,14 @@ Public web import endpoints:
 - `POST /api/v1/web/import-urls`
 - `GET /api/v1/web/items`
 
+Phase 4 corpus endpoints:
+
+- `GET /api/v1/corpus/sources`
+- `POST /api/v1/corpus/create`
+- `GET /api/v1/corpus/items`
+- `GET /api/v1/corpus/items/{corpus_id}`
+- `GET /api/v1/corpus/items/{corpus_id}/export-text`
+
 Phase 3 PDF endpoints:
 
 - `POST /api/v1/pdf/import-local`
@@ -160,6 +176,7 @@ Phase 3 keeps persistence intentionally simple in local single-user mode:
 - PDF items, jobs, and saved PDF records are stored in `backend/data/pdf_store.json`
 - downloaded remote PDFs are cached under `backend/data/pdf_cache/`
 - public web article imports are stored in `backend/data/web_store.json`
+- local corpora are stored in `backend/data/corpus_store.json`
 - no PostgreSQL domain models or multi-user access were added for this phase
 
 ## Required system dependencies
@@ -241,6 +258,6 @@ npm run build --prefix frontend
 - remote PDF import accepts only direct PDF resources and does not do website scraping
 - PDF persistence is local JSON rather than full project database storage
 
-## Phase 4 preview
+## Phase 5 preview
 
-Phase 4 should build on the saved PDF corpus with richer project workflows and broader corpus tooling, without changing the scope of the current Phase 3 deliverable. The Phase 3 PR draft lives in `docs/phase-3-pr.md`.
+Phase 5 can build on local corpora with more advanced corpus preparation once its scope is explicitly defined. TreeTagger, advanced IRaMuTeQ exports, and global corpus cleaning remain out of the current Phase 4 boundary.

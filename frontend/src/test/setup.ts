@@ -101,6 +101,20 @@ beforeEach(() => {
         }
       }
 
+      if (path === '/api/v1/corpus/sources') {
+        return {
+          ok: true,
+          json: async () => ({ items: [] }),
+        }
+      }
+
+      if (path === '/api/v1/corpus/items') {
+        return {
+          ok: true,
+          json: async () => ({ corpora: [] }),
+        }
+      }
+
       return {
         ok: false,
         status: 404,
